@@ -41,6 +41,49 @@
             background-size: 28px 28px;
         }
 
+        /* Fullscreen Entrance Overlay to Unlock Audio */
+        .welcome-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--deep-maroon), var(--primary-red));
+            color: var(--gold);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+            padding: 20px;
+        }
+
+        .welcome-overlay.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .open-card-btn {
+            background: rgba(0,0,0,0.3);
+            border: 2px solid var(--gold);
+            color: var(--gold);
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border-radius: 30px;
+            margin-top: 25px;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+            animation: pulseBtn 1.8s infinite;
+        }
+
+        @keyframes pulseBtn {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.06); }
+            100% { transform: scale(1); }
+        }
+
         /* Falling Flower Petals Animation */
         .petals-container {
             position: fixed;
@@ -79,6 +122,23 @@
             }
         }
 
+        /* Click Sparkle FX */
+        .click-sparkle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: var(--gold);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 999;
+            animation: sparklePop 0.8s ease-out forwards;
+        }
+
+        @keyframes sparklePop {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(3) translateY(-30px); opacity: 0; }
+        }
+
         /* Traditional Border Container */
         .page-border {
             border: 10px solid var(--primary-red);
@@ -110,6 +170,26 @@
         .bottom-left { bottom: 8px; left: 8px; transform: scaleY(-1); }
         .bottom-right { bottom: 8px; right: 8px; transform: scale(-1); }
 
+        /* Rotating Alpona Mandala Background */
+        .mandala-bg {
+            position: absolute;
+            top: 60px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 280px;
+            height: 280px;
+            opacity: 0.08;
+            fill: var(--primary-red);
+            pointer-events: none;
+            animation: rotateMandala 60s linear infinite;
+            z-index: 1;
+        }
+
+        @keyframes rotateMandala {
+            from { transform: translateX(-50%) rotate(0deg); }
+            to { transform: translateX(-50%) rotate(360deg); }
+        }
+
         /* Hero Header */
         header {
             padding: 30px 10px 10px 10px;
@@ -135,12 +215,13 @@
             margin-top: 5px;
         }
 
-        /* Couple Names with Shimmer & Overflow Safety */
+        /* Couple Names with Shimmer */
         h1.couple-names {
             font-family: 'Great Vibes', cursive;
             font-size: clamp(2.4rem, 8vw, 4rem);
             line-height: 1.3;
-            background: linear-gradient(45deg, var(--deep-maroon), var(--primary-red), var(--gold));
+            background: linear-gradient(90deg, var(--deep-maroon), var(--gold), var(--primary-red));
+            background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin: 15px 0;
@@ -148,7 +229,11 @@
             word-wrap: break-word;
             overflow-wrap: break-word;
             filter: drop-shadow(1px 2px 2px rgba(212, 175, 55, 0.4));
-            animation: zoomIn 1.5s ease;
+            animation: shineText 4s linear infinite;
+        }
+
+        @keyframes shineText {
+            to { background-position: 200% center; }
         }
 
         /* Mantra Box */
@@ -241,6 +326,18 @@
             font-size: 0.8rem;
             color: var(--light-gold);
             text-transform: uppercase;
+        }
+
+        /* Scroll Animation Reveal Classes */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* Events Cards */
@@ -371,23 +468,8 @@
             padding-bottom: 20px;
         }
 
-        /* Keyframe Animations */
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes zoomIn {
-            from { opacity: 0; transform: scale(0.85); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
         @media (max-width: 600px) {
-            .page-border {
-                padding: 15px 8px;
-                margin: 5px;
-                border-width: 6px;
-            }
+            .page-border { padding: 15px 8px; margin: 5px; border-width: 6px; }
             .auspicious-symbol { font-size: 1.35rem; }
             .timer { gap: 6px; }
             .timer-box { min-width: 50px; padding: 8px 4px; }
@@ -398,11 +480,33 @@
 </head>
 <body>
 
+    <!-- Welcome Overlay -->
+    <div class="welcome-overlay" id="welcomeOverlay" onclick="openInvitation()">
+        <div style="font-size: 2.2rem; margin-bottom: 10px;">ॐ || শ্রী শ্রী প্রজাপতয়ে নমঃ ||</div>
+        <div style="font-family: 'Great Vibes', cursive; font-size: 2.8rem; color: #FFFDF2; margin: 10px 0;">Dwip & Rupashree</div>
+        <p style="font-size: 1.1rem; opacity: 0.9;">You are cordially invited to our wedding</p>
+        <div class="open-card-btn">
+            <i class="fa-solid fa-envelope-open-text"></i> Tap to Open Invitation
+        </div>
+    </div>
+
     <!-- Animated Petals Container -->
     <div class="petals-container" id="petals"></div>
 
+    <!-- Local Shehnai Audio File (Hosted in your Repo) -->
+    <audio id="shehnaiAudio" loop preload="auto">
+        <source src="shehnai.mp3" type="audio/mpeg">
+    </audio>
+
     <div class="page-border">
         
+        <!-- Rotating Mandala Background Art -->
+        <svg class="mandala-bg" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3,3"/>
+            <circle cx="50" cy="50" r="35" fill="none" stroke="currentColor" stroke-width="1"/>
+            <path d="M50,5 L50,95 M5,50 L95,50 M18,18 L82,82 M18,82 L82,18" stroke="currentColor" stroke-width="0.5"/>
+        </svg>
+
         <!-- Alpona Corner Ornaments -->
         <svg class="alpona-corner top-left" viewBox="0 0 100 100"><path d="M0,0 L100,0 C50,0 0,50 0,100 Z M30,10 C50,20 20,50 10,30 Z"/></svg>
         <svg class="alpona-corner top-right" viewBox="0 0 100 100"><path d="M0,0 L100,0 C50,0 0,50 0,100 Z M30,10 C50,20 20,50 10,30 Z"/></svg>
@@ -416,28 +520,27 @@
             
             <p class="sub-heading">শুভ বিবাহ কঙ্কণ</p>
 
-            <!-- Couple Name (Fluid Size with Wrap Protection) -->
             <h1 class="couple-names">Dwip & Rupashree</h1>
 
-            <p class="mantra">
+            <p class="mantra reveal">
                 "যদেতদ্ধৃদয়ং তব তদেতদ্ধৃদয়ং মম।<br>
                 যদেতদ্ধৃদয়ং মম তদেতদ্ধৃদয়ং তব॥"
             </p>
 
-            <p style="font-size: 1.15rem; color: #444; max-width: 650px; margin: 0 auto; line-height: 1.6;">
+            <p class="reveal" style="font-size: 1.15rem; color: #444; max-width: 650px; margin: 0 auto; line-height: 1.6;">
                 We cordially invite you and your family to bless us on the auspicious occasion of the wedding ceremony of <strong>Dwip</strong> & <strong>Rupashree</strong>.
             </p>
         </header>
 
         <!-- Alpona Motif Divider -->
-        <svg class="alpona-divider" viewBox="0 0 200 30">
-            <path d="M100 0 C110 15, 130 15, 140 0 C150 15, 170 15, 180 0 L200 15 L180 30 C170 15, 150 15, 140 30 C130 15, 110 15, 100 30 C90 15, 70 15, 60 30 C50 15, 30 15, 20 30 L0 15 L20 0 C30 15, 50 15, 60 0 C70 15, 90 15, 100 0 Z"/>
+        <svg class="alpona-divider reveal" viewBox="0 0 200 30">
+            <path d="M100 0 C110 15, 130 15, 140 0 C150 15, 170 15, 180 0 L200 15 L180 30 C170 15, 150 15, 140 30 C130 15, 110 15, 100 30 C90 15, 70 15, 60 0 C70 15, 90 15, 100 0 Z"/>
         </svg>
 
         <div class="container">
 
             <!-- Animated Countdown Timer -->
-            <div class="countdown-container">
+            <div class="countdown-container reveal">
                 <h3 style="font-size: 1.3rem; font-weight: 600;">Wedding Countdown</h3>
                 <div class="timer" id="countdown">
                     <div class="timer-box"><span id="days">00</span><label>Days</label></div>
@@ -448,11 +551,11 @@
             </div>
 
             <!-- Itinerary / Events -->
-            <h2 class="section-title">পর্বানুষ্ঠান (Schedule of Events)</h2>
+            <h2 class="section-title reveal">পর্বানুষ্ঠান (Schedule of Events)</h2>
             <div class="events-grid">
 
                 <!-- Wedding -->
-                <div class="event-card" style="border-color: var(--primary-red);">
+                <div class="event-card reveal" style="border-color: var(--primary-red);">
                     <div class="event-icon"><i class="fa-solid fa-gem"></i></div>
                     <div class="event-title">শুভ বিবাহ (Wedding)</div>
                     <div class="event-date"><i class="fa-regular fa-calendar" style="color: var(--primary-red);"></i> Friday, 29th Jan 2027</div>
@@ -461,7 +564,7 @@
                 </div>
 
                 <!-- Reception -->
-                <div class="event-card">
+                <div class="event-card reveal">
                     <div class="event-icon"><i class="fa-solid fa-utensils"></i></div>
                     <div class="event-title">বৌ ভাত (Reception)</div>
                     <div class="event-date"><i class="fa-regular fa-calendar" style="color: var(--primary-red);"></i> Sunday, 31st Jan 2027</div>
@@ -472,7 +575,7 @@
             </div>
 
             <!-- Reception Venue Location Section -->
-            <div class="venue-section">
+            <div class="venue-section reveal">
                 <h2 style="font-family: 'Tiro Bangla', serif; color: var(--primary-red); font-size: 1.8rem; margin-bottom: 8px;">
                     প্রীতিভোজ বাসর (Reception Venue Location)
                 </h2>
@@ -495,12 +598,44 @@
         </footer>
     </div>
 
-    <!-- JavaScript for Countdown Timer and Petal Animation -->
+    <!-- JavaScript -->
     <script>
+        const audio = document.getElementById('shehnaiAudio');
+        const overlay = document.getElementById('welcomeOverlay');
+
+        function openInvitation() {
+            overlay.classList.add('hidden');
+            if (audio) {
+                audio.play().catch(err => console.log("Audio Error:", err));
+            }
+        }
+
+        // Sparkle FX on Click
+        document.addEventListener('click', function(e) {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'click-sparkle';
+            sparkle.style.left = `${e.pageX - 5}px`;
+            sparkle.style.top = `${e.pageY - 5}px`;
+            document.body.appendChild(sparkle);
+
+            setTimeout(() => sparkle.remove(), 800);
+        });
+
+        // Scroll Reveal Observer
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
         // Target Wedding Date (January 29, 2027)
         const weddingDate = new Date("January 29, 2027 19:00:00").getTime();
 
-        const countdownFn = setInterval(() => {
+        setInterval(() => {
             const now = new Date().getTime();
             const distance = weddingDate - now;
 
@@ -513,29 +648,19 @@
             document.getElementById("hours").innerText = hours < 10 ? '0' + hours : hours;
             document.getElementById("minutes").innerText = minutes < 10 ? '0' + minutes : minutes;
             document.getElementById("seconds").innerText = seconds < 10 ? '0' + seconds : seconds;
-
-            if (distance < 0) {
-                clearInterval(countdownFn);
-                document.getElementById("countdown").innerHTML = "<h3>The Wedding Celebration Has Begun!</h3>";
-            }
         }, 1000);
 
-        // Generate Falling Flower Petals dynamically
+        // Falling Flower Petals
         const petalsContainer = document.getElementById('petals');
-        const numberOfPetals = 18;
-
-        for (let i = 0; i < numberOfPetals; i++) {
+        for (let i = 0; i < 20; i++) {
             const petal = document.createElement('div');
             petal.classList.add('petal');
-            
-            // Randomize size, starting position, and animation delay
             const size = Math.random() * 12 + 8;
             petal.style.width = `${size}px`;
             petal.style.height = `${size * 1.4}px`;
             petal.style.left = `${Math.random() * 100}%`;
             petal.style.animationDelay = `${Math.random() * 8}s`;
             petal.style.animationDuration = `${Math.random() * 5 + 7}s`;
-
             petalsContainer.appendChild(petal);
         }
     </script>
