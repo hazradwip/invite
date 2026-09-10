@@ -3,6 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Open Graph Meta Tags for WhatsApp Preview -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="আমন্ত্রণ | Dwip & Rupashree Reception">
+    <meta property="og:description" content="আমাদের বৌ ভাত ও প্রীতিভোজ উপলক্ষে আপনাকে ও আপনার পরিবারকে সপরিবারে বিনীত নিমন্ত্রণ জানাচ্ছি।">
+    <meta property="og:image" content="https://hazradwip.github.io/invite/preview-thumbnail.png">
+    <meta property="og:url" content="https://hazradwip.github.io/invite/">
+
     <title>প্রীতিভোজ ও বৌ ভাত | Dwip & Rupashree</title>
     
     <!-- Google Fonts for Bengali & Serif Elegance -->
@@ -15,14 +23,14 @@
 
     <style>
         :root {
-            --light-grey-bg: #EAEAEA;
-            --soft-grey: #F5F5F7;
+            --light-grey-bg: #EBF0F5;
+            --soft-grey: #F4F7FA;
             --card-white: #FFFFFF;
-            --charcoal-dark: #2C2C2E;
-            --slate-grey: #4A4A4A;
+            --navy-blue: #0B1B3D;
+            --slate-grey: #2C3E60;
             --gold-accent: #C59B27;
             --light-gold: #FDF1B8;
-            --text-dark: #1C1C1E;
+            --text-dark: #0A1428;
         }
 
         * {
@@ -38,7 +46,7 @@
             text-align: center;
             overflow-x: hidden;
             position: relative;
-            background-image: radial-gradient(rgba(44, 44, 46, 0.08) 1.5px, transparent 1.5px);
+            background-image: radial-gradient(rgba(11, 27, 61, 0.08) 1.5px, transparent 1.5px);
             background-size: 28px 28px;
         }
 
@@ -49,8 +57,8 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background-color: rgba(234, 234, 234, 0.98);
-            background-image: radial-gradient(circle at center, #FFFFFF 0%, #DCDCDC 100%);
+            background-color: rgba(235, 240, 245, 0.98);
+            background-image: radial-gradient(circle at center, #FFFFFF 0%, #DCE4EC 100%);
             z-index: 9999;
             display: flex;
             align-items: center;
@@ -75,7 +83,7 @@
             background: #FFFFFF;
             border: 1.5px solid var(--gold-accent);
             box-shadow: 
-                0 20px 40px rgba(0, 0, 0, 0.12),
+                0 20px 40px rgba(11, 27, 61, 0.12),
                 inset 0 0 15px rgba(197, 155, 39, 0.05);
             display: flex;
             flex-direction: column;
@@ -92,7 +100,7 @@
         .bengali-amontron-title {
             font-family: 'Tiro Bangla', serif;
             font-size: clamp(1.8rem, 5.5vw, 2.4rem);
-            color: var(--charcoal-dark);
+            color: var(--navy-blue);
             font-weight: 700;
             letter-spacing: 1px;
             line-height: 1.2;
@@ -117,18 +125,18 @@
             margin-bottom: 4px;
         }
 
-        /* Charcoal & Gold Wax Seal Stamp */
+        /* Navy Blue & Gold Wax Seal Stamp */
         .wax-seal {
             position: relative;
             width: clamp(80px, 20vw, 100px);
             height: clamp(80px, 20vw, 100px);
-            background: radial-gradient(circle at 32% 28%, #4A4A4A 0%, #2C2C2E 60%, #111111 90%);
+            background: radial-gradient(circle at 32% 28%, #1B3566 0%, #0B1B3D 60%, #040A1A 90%);
             border-radius: 48% 52% 50% 50% / 50% 52% 48% 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             box-shadow: 
-                0 10px 20px rgba(0, 0, 0, 0.25),
+                0 10px 20px rgba(11, 27, 61, 0.3),
                 inset 0 3px 5px rgba(255, 255, 255, 0.4),
                 inset 0 -6px 10px rgba(0, 0, 0, 0.6);
             margin: 10px 0 14px 0;
@@ -154,12 +162,12 @@
         }
 
         @keyframes pulseSeal {
-            0% { transform: scale(1); filter: drop-shadow(0 0 5px rgba(0,0,0,0.15)); }
-            100% { transform: scale(1.06); filter: drop-shadow(0 0 15px rgba(197, 155, 39, 0.35)); }
+            0% { transform: scale(1); filter: drop-shadow(0 0 5px rgba(11,27,61,0.2)); }
+            100% { transform: scale(1.06); filter: drop-shadow(0 0 15px rgba(197, 155, 39, 0.4)); }
         }
 
         .overlay-invitation-text {
-            color: var(--charcoal-dark);
+            color: var(--navy-blue);
         }
 
         /* ---------------- DISPLAY DATE BADGE ---------------- */
@@ -169,7 +177,7 @@
             justify-content: center;
             gap: 8px;
             background: rgba(197, 155, 39, 0.12);
-            color: var(--charcoal-dark);
+            color: var(--navy-blue);
             border: 1.5px solid var(--gold-accent);
             padding: 8px 18px;
             border-radius: 20px;
@@ -197,7 +205,7 @@
         }
 
         .petal:nth-child(2n) {
-            background: #A8A8A8;
+            background: #8A9CB3;
             border-radius: 0 150% 0 150%;
         }
 
@@ -223,7 +231,7 @@
 
         /* ---------------- MAIN WEBSITE LAYOUT ---------------- */
         .page-border {
-            border: 8px solid var(--charcoal-dark);
+            border: 8px solid var(--navy-blue);
             outline: 2px dashed var(--gold-accent);
             outline-offset: -6px;
             min-height: 100vh;
@@ -231,13 +239,13 @@
             margin: 10px;
             position: relative;
             background-color: var(--soft-grey);
-            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.06);
+            box-shadow: inset 0 0 20px rgba(11, 27, 61, 0.08);
         }
 
         .alpona-corner {
             width: 50px; height: 50px;
             position: absolute;
-            fill: var(--charcoal-dark);
+            fill: var(--navy-blue);
             opacity: 0.85;
         }
         .top-left { top: 8px; left: 8px; }
@@ -250,8 +258,8 @@
             top: 60px; left: 50%;
             transform: translateX(-50%);
             width: 280px; height: 280px;
-            opacity: 0.05;
-            fill: var(--charcoal-dark);
+            opacity: 0.06;
+            fill: var(--navy-blue);
             pointer-events: none;
             animation: rotateMandala 60s linear infinite;
             z-index: 1;
@@ -287,7 +295,7 @@
         .auspicious-symbol {
             font-family: 'Tiro Bangla', serif;
             font-size: 1.8rem;
-            color: var(--charcoal-dark);
+            color: var(--navy-blue);
             font-weight: bold;
             text-shadow: 1px 1px 0px #FFFFFF;
             padding: 0 5px;
@@ -305,7 +313,7 @@
             font-family: 'Great Vibes', cursive;
             font-size: clamp(2.4rem, 8vw, 4rem);
             line-height: 1.3;
-            background: linear-gradient(90deg, var(--charcoal-dark), var(--gold-accent), var(--slate-grey));
+            background: linear-gradient(90deg, var(--navy-blue), var(--gold-accent), var(--slate-grey));
             background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -313,7 +321,7 @@
             padding: 0 10px;
             word-wrap: break-word;
             overflow-wrap: break-word;
-            filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.1));
+            filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.15));
             animation: shineText 4s linear infinite;
         }
 
@@ -326,7 +334,7 @@
             margin: 16px 0;
             border-radius: 12px;
             border: 1.5px solid var(--gold-accent);
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+            box-shadow: 0 4px 14px rgba(11, 27, 61, 0.05);
             box-sizing: border-box;
             background: #FFFFFF;
         }
@@ -335,11 +343,11 @@
         .mantra {
             font-family: 'Tiro Bangla', serif;
             font-style: italic;
-            color: var(--charcoal-dark);
+            color: var(--navy-blue);
             font-size: 1.18rem;
             padding: 18px 20px;
             line-height: 1.75;
-            background: #FAF9F5;
+            background: #FAFAF7;
         }
 
         /* Bilingual Invitation Card */
@@ -351,7 +359,7 @@
         .invitation-bn {
             font-family: 'Tiro Bangla', serif;
             font-size: 1.15rem;
-            color: var(--charcoal-dark);
+            color: var(--navy-blue);
             line-height: 1.7;
             margin-bottom: 14px;
             font-weight: 600;
@@ -359,7 +367,7 @@
 
         .invitation-en {
             font-size: 1.02rem;
-            color: #444444;
+            color: #3A4A5E;
             line-height: 1.6;
             border-top: 1px dashed var(--gold-accent);
             padding-top: 12px;
@@ -372,7 +380,7 @@
             height: 24px;
             margin: 22px auto 10px auto;
             display: block;
-            fill: var(--charcoal-dark);
+            fill: var(--navy-blue);
         }
 
         /* Event Schedule Card */
@@ -384,20 +392,20 @@
 
         .event-card-single:hover {
             transform: translateY(-6px);
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
-            border-color: var(--charcoal-dark);
+            box-shadow: 0 12px 25px rgba(11, 27, 61, 0.12);
+            border-color: var(--navy-blue);
         }
 
         .event-icon {
             font-size: 2.6rem;
-            color: var(--charcoal-dark);
+            color: var(--navy-blue);
             margin-bottom: 12px;
         }
 
         .event-title {
             font-family: 'Tiro Bangla', serif;
             font-size: 1.8rem;
-            color: var(--charcoal-dark);
+            color: var(--navy-blue);
             margin-bottom: 8px;
             font-weight: 600;
         }
@@ -418,12 +426,12 @@
             border-radius: 12px;
             padding: 22px 18px;
             text-align: center;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            box-shadow: 0 4px 12px rgba(11, 27, 61, 0.04);
         }
 
         .details-card h3 {
             font-family: 'Tiro Bangla', serif;
-            color: var(--charcoal-dark);
+            color: var(--navy-blue);
             font-size: 1.35rem;
             margin-bottom: 10px;
             border-bottom: 1px solid var(--gold-accent);
@@ -433,25 +441,25 @@
 
         .details-card p {
             font-size: 1rem;
-            color: #444444;
+            color: #3A4A5E;
             line-height: 1.6;
         }
 
         .phone-link {
             display: inline-block;
-            color: var(--charcoal-dark);
+            color: var(--navy-blue);
             font-weight: bold;
             text-decoration: none;
             margin-top: 6px;
             font-size: 1.1rem;
-            border: 1px dashed var(--charcoal-dark);
+            border: 1px dashed var(--navy-blue);
             padding: 4px 12px;
             border-radius: 20px;
             transition: all 0.3s ease;
         }
 
         .phone-link:hover {
-            background-color: var(--charcoal-dark);
+            background-color: var(--navy-blue);
             color: var(--gold-accent);
         }
 
@@ -473,13 +481,13 @@
             align-items: center;
             justify-content: center;
             width: 80px; height: 80px;
-            background: linear-gradient(135deg, var(--charcoal-dark), var(--slate-grey));
+            background: linear-gradient(135deg, var(--navy-blue), var(--slate-grey));
             color: var(--gold-accent);
             border-radius: 50%;
             font-size: 2.2rem;
             text-decoration: none;
             border: 3px solid var(--gold-accent);
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.18);
+            box-shadow: 0 6px 15px rgba(11, 27, 61, 0.25);
             margin: 0 auto;
             transition: transform 0.3s ease;
         }
@@ -490,7 +498,7 @@
             top: 0; left: 0;
             width: 100%; height: 100%;
             border-radius: 50%;
-            border: 2px solid var(--charcoal-dark);
+            border: 2px solid var(--navy-blue);
             animation: pulseWave 2s infinite;
             z-index: -1;
         }
@@ -502,7 +510,7 @@
 
         .click-text {
             font-weight: bold;
-            color: var(--charcoal-dark);
+            color: var(--navy-blue);
             margin-top: 10px;
             font-size: 1rem;
         }
@@ -522,7 +530,7 @@
         .section-title {
             font-family: 'Tiro Bangla', serif;
             font-size: 2rem;
-            color: var(--charcoal-dark);
+            color: var(--navy-blue);
             margin: 25px 0 12px 0;
             font-weight: 700;
         }
@@ -530,7 +538,7 @@
         footer {
             margin-top: 40px;
             font-size: 1rem;
-            color: var(--charcoal-dark);
+            color: var(--navy-blue);
             padding-bottom: 20px;
         }
 
@@ -550,7 +558,7 @@
         
         <!-- Center Floating Pearl Card Frame -->
         <div class="floating-card-frame">
-            <!-- Amontron (Bengali) and Invitation (English) Words Added -->
+            <!-- Amontron (Bengali) and Invitation (English) Words -->
             <div class="bengali-amontron-title">আমন্ত্রণ</div>
             <div class="english-invitation-subtitle">Invitation</div>
             <div class="tap-reveal-title">Tap to Reveal</div>
@@ -565,7 +573,7 @@
                 <div style="font-family: 'Tiro Bangla', serif; font-size: 1.8rem; font-weight: bold; margin-bottom: 2px;">
                     দ্বীপ ও রূপশ্রী
                 </div>
-                <div style="font-family: 'Great Vibes', cursive; font-size: 2rem; color: #4A4A4A;">
+                <div style="font-family: 'Great Vibes', cursive; font-size: 2rem; color: #2C3E60;">
                     (Dwip & Rupashree)
                 </div>
             </div>
@@ -641,7 +649,7 @@
                     <i class="fa-regular fa-calendar-days"></i> Sun, 31st Jan 2027
                 </div>
 
-                <div class="event-time" style="margin-top: 8px;"><i class="fa-regular fa-clock" style="color: var(--charcoal-dark);"></i> Evening 7:30 PM Onwards</div>
+                <div class="event-time" style="margin-top: 8px;"><i class="fa-regular fa-clock" style="color: var(--navy-blue);"></i> Evening 7:30 PM Onwards</div>
                 <p style="margin-top: 8px; font-size: 0.9rem; color: #666;">A grand evening of feast, music, and joyful celebration with family & friends.</p>
             </div>
 
@@ -661,7 +669,7 @@
 
             <!-- Dedicated Reception Venue Location Section (Aligned Card) -->
             <div class="venue-section aligned-card reveal">
-                <h2 style="font-family: 'Tiro Bangla', serif; color: var(--charcoal-dark); font-size: 1.8rem; margin-bottom: 8px;">
+                <h2 style="font-family: 'Tiro Bangla', serif; color: var(--navy-blue); font-size: 1.8rem; margin-bottom: 8px;">
                     প্রীতিভোজ বাসর (Reception Venue Location)
                 </h2>
                 <p style="color: #555; margin-bottom: 10px;">Tap the icon below to open the location directly in Google Maps:</p>
