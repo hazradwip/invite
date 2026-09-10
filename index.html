@@ -185,7 +185,29 @@
             border-radius: 20px;
             font-weight: 700;
             font-size: 1.05rem;
-            margin: 12px auto;
+            margin: 10px auto;
+        }
+
+        /* Venue Address Box inside Date Card */
+        .venue-address-block {
+            margin-top: 14px;
+            padding-top: 12px;
+            border-top: 1px dashed var(--gold-accent);
+            color: var(--navy-blue);
+        }
+
+        .venue-name-title {
+            font-family: 'Tiro Bangla', serif;
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: var(--navy-blue);
+            margin-bottom: 4px;
+        }
+
+        .venue-address-text {
+            font-size: 0.95rem;
+            color: #3A4A5E;
+            line-height: 1.5;
         }
 
         /* ---------------- PETALS & SPARKLES ---------------- */
@@ -556,7 +578,7 @@
 <body>
 
     <!-- ---------------- FLOATING PEARL CARD TAP TO OPEN ENTRANCE SCREEN ---------------- -->
-    <div class="welcome-overlay" id="welcomeOverlay" onclick="openInvitation()">
+    <div class="welcome-overlay" id="welcomeOverlay">
         
         <!-- Center Floating Pearl Card Frame -->
         <div class="floating-card-frame">
@@ -586,7 +608,7 @@
     <!-- Animated Petals Container -->
     <div class="petals-container" id="petals"></div>
 
-    <!-- Shehnai Audio -->
+    <!-- Shehnai Audio with Immediate Preload -->
     <audio id="shehnaiAudio" loop preload="auto">
         <source src="shehnai.mp3" type="audio/mpeg">
     </audio>
@@ -641,7 +663,7 @@
 
             <h2 class="section-title reveal">অনুষ্ঠানসূচী (Schedule)</h2>
             
-            <!-- Reception Event Card (Aligned Card) -->
+            <!-- Reception Event Card (Aligned Card with Date & Venue Address) -->
             <div class="event-card-single aligned-card reveal">
                 <div class="event-icon"><i class="fa-regular fa-calendar-check"></i></div>
                 <div class="event-title">বৌ ভাত ও প্রীতিভোজ (Reception)</div>
@@ -651,8 +673,19 @@
                     <i class="fa-regular fa-calendar-days"></i> Sun, 31st Jan 2027
                 </div>
 
-                <div class="event-time" style="margin-top: 8px;"><i class="fa-regular fa-clock" style="color: var(--navy-blue);"></i> Evening 7:30 PM Onwards</div>
-                <p style="margin-top: 8px; font-size: 0.9rem; color: #666;">A grand evening of feast, music, and joyful celebration with family & friends.</p>
+                <div class="event-time" style="margin-top: 6px;"><i class="fa-regular fa-clock" style="color: var(--navy-blue);"></i> Evening 7:30 PM Onwards</div>
+                
+                <!-- INTEGRATED VENUE NAME & ADDRESS BLOCK -->
+                <div class="venue-address-block">
+                    <div class="venue-name-title"><i class="fa-solid fa-building-columns" style="color: var(--gold-accent); margin-right: 4px;"></i> স্থান: তনুশ্রী ভবন (Tanushree Bhavan)</div>
+                    <div class="venue-address-text">
+                        বালেটিকুরী শুঁড়কিমিল (রয়্যাল এনফিল্ড শোরুমের বিপরীতে)<br>
+                        Balitikuri Surkimill, Opp. Royal Enfield Showroom<br>
+                        Howrah - 711113
+                    </div>
+                </div>
+
+                <p style="margin-top: 10px; font-size: 0.9rem; color: #666;">A grand evening of feast, music, and joyful celebration with family & friends.</p>
             </div>
 
             <!-- Reception Details Grid -->
@@ -695,22 +728,42 @@
 
     <!-- JavaScript -->
     <script>
-        // 1. Entrance Card Reveal Animation
         const overlay = document.getElementById('welcomeOverlay');
         const audio = document.getElementById('shehnaiAudio');
 
-        function openInvitation() {
-            overlay.classList.add('open');
+        // Preload Audio Immediately
+        window.addEventListener('DOMContentLoaded', () => {
             if (audio) {
-                audio.play().catch(err => console.log("Audio allowed on click:", err));
+                audio.load();
             }
+        });
+
+        // Instant Trigger Function on Tap
+        function triggerAudioPlayback() {
+            if (audio) {
+                audio.currentTime = 0; // Reset to start instantly
+                const playPromise = audio.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(err => console.log("Audio play allowed on user tap:", err));
+                }
+            }
+        }
+
+        function openInvitation() {
+            triggerAudioPlayback(); // Play immediately on tap
+            
+            overlay.classList.add('open');
             setTimeout(() => {
                 overlay.classList.add('hidden');
                 checkScrollReveal();
-            }, 800);
+            }, 600);
         }
 
-        // 2. Scroll Reveal Observer
+        // Attach listeners for immediate touch response
+        overlay.addEventListener('touchstart', triggerAudioPlayback, { passive: true, once: true });
+        overlay.addEventListener('click', openInvitation);
+
+        // Scroll Reveal Observer
         function checkScrollReveal() {
             const reveals = document.querySelectorAll('.reveal');
             reveals.forEach(el => {
@@ -726,7 +779,7 @@
 
         window.addEventListener('scroll', checkScrollReveal);
 
-        // 3. Sparkle FX on Click
+        // Sparkle FX on Click
         document.addEventListener('click', function(e) {
             const sparkle = document.createElement('div');
             sparkle.className = 'click-sparkle';
@@ -737,7 +790,7 @@
             setTimeout(() => sparkle.remove(), 800);
         });
 
-        // 4. Falling Flower Petals
+        // Falling Flower Petals
         const petalsContainer = document.getElementById('petals');
         for (let i = 0; i < 20; i++) {
             const petal = document.createElement('div');
