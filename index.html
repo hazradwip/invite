@@ -70,7 +70,7 @@
         .floating-card-frame {
             position: relative;
             width: clamp(290px, 85vw, 420px);
-            padding: 40px 25px;
+            padding: 36px 25px;
             border-radius: 18px;
             background: #FFFFFF;
             border: 1.5px solid var(--gold-accent);
@@ -89,12 +89,32 @@
             opacity: 0;
         }
 
+        .bengali-amontron-title {
+            font-family: 'Tiro Bangla', serif;
+            font-size: clamp(1.8rem, 5.5vw, 2.4rem);
+            color: var(--charcoal-dark);
+            font-weight: 700;
+            letter-spacing: 1px;
+            line-height: 1.2;
+        }
+
+        .english-invitation-subtitle {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(0.85rem, 2.5vw, 1rem);
+            color: var(--gold-accent);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-top: 2px;
+            margin-bottom: 4px;
+        }
+
         .tap-reveal-title {
             font-family: 'Great Vibes', cursive;
-            font-size: clamp(2.2rem, 5vw, 3rem);
-            color: var(--charcoal-dark);
+            font-size: clamp(1.8rem, 4.5vw, 2.3rem);
+            color: var(--slate-grey);
             text-shadow: 0 1px 2px rgba(255,255,255,0.8);
-            margin-bottom: 8px;
+            margin-bottom: 4px;
         }
 
         /* Charcoal & Gold Wax Seal Stamp */
@@ -111,7 +131,7 @@
                 0 10px 20px rgba(0, 0, 0, 0.25),
                 inset 0 3px 5px rgba(255, 255, 255, 0.4),
                 inset 0 -6px 10px rgba(0, 0, 0, 0.6);
-            margin: 14px 0;
+            margin: 10px 0 14px 0;
             animation: pulseSeal 2.2s infinite alternate;
         }
 
@@ -530,6 +550,9 @@
         
         <!-- Center Floating Pearl Card Frame -->
         <div class="floating-card-frame">
+            <!-- Amontron (Bengali) and Invitation (English) Words Added -->
+            <div class="bengali-amontron-title">আমন্ত্রণ</div>
+            <div class="english-invitation-subtitle">Invitation</div>
             <div class="tap-reveal-title">Tap to Reveal</div>
 
             <!-- Wax Seal Stamp -->
@@ -662,7 +685,7 @@
 
     <!-- JavaScript -->
     <script>
-        // 1. Reveal Animation
+        // 1. Entrance Card Reveal Animation
         const overlay = document.getElementById('welcomeOverlay');
         const audio = document.getElementById('shehnaiAudio');
 
