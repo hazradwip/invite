@@ -41,7 +41,7 @@
             background-size: 28px 28px;
         }
 
-        /* Fullscreen Entrance Overlay to Unlock Audio */
+        /* Fullscreen Entrance Overlay */
         .welcome-overlay {
             position: fixed;
             top: 0;
@@ -215,6 +215,48 @@
             margin-top: 5px;
         }
 
+        /* Animated Bride & Groom Silhouette Motifs */
+        .couple-animation-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin: 15px auto 5px auto;
+        }
+
+        .bride-groom-icon {
+            font-size: 2.8rem;
+            color: var(--primary-red);
+            filter: drop-shadow(0 4px 6px rgba(128, 0, 0, 0.2));
+            animation: floatCouple 3s ease-in-out infinite alternate;
+        }
+
+        .groom-icon {
+            animation-delay: 0s;
+        }
+
+        .bride-icon {
+            color: var(--deep-maroon);
+            animation-delay: 1.5s;
+        }
+
+        .heart-center {
+            font-size: 1.5rem;
+            color: var(--gold);
+            animation: pulseHeart 1.5s infinite;
+        }
+
+        @keyframes floatCouple {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-10px) rotate(4deg); }
+        }
+
+        @keyframes pulseHeart {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+
         /* Couple Names with Shimmer */
         h1.couple-names {
             font-family: 'Great Vibes', cursive;
@@ -224,7 +266,7 @@
             background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin: 15px 0;
+            margin: 10px 0 15px 0;
             padding: 0 10px;
             word-wrap: break-word;
             overflow-wrap: break-word;
@@ -250,6 +292,33 @@
             line-height: 1.6;
             background: rgba(254, 241, 184, 0.25);
             border-radius: 6px;
+        }
+
+        /* Bilingual Invitation Message Box */
+        .bilingual-invitation {
+            max-width: 680px;
+            margin: 20px auto 10px auto;
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 12px;
+            border: 1px solid var(--gold);
+        }
+
+        .invitation-bn {
+            font-family: 'Tiro Bangla', serif;
+            font-size: 1.15rem;
+            color: var(--deep-maroon);
+            line-height: 1.7;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .invitation-en {
+            font-size: 1.05rem;
+            color: #444;
+            line-height: 1.6;
+            border-top: 1px dashed var(--gold);
+            padding-top: 10px;
         }
 
         .container {
@@ -475,6 +544,7 @@
             .timer-box { min-width: 50px; padding: 8px 4px; }
             .timer-box span { font-size: 1.25rem; }
             .alpona-corner { width: 35px; height: 35px; }
+            .bride-groom-icon { font-size: 2.2rem; }
         }
     </style>
 </head>
@@ -482,9 +552,22 @@
 
     <!-- Welcome Overlay -->
     <div class="welcome-overlay" id="welcomeOverlay" onclick="openInvitation()">
-        <div style="font-size: 2.2rem; margin-bottom: 10px;">ॐ || শ্রী শ্রী প্রজাপতয়ে নমঃ ||</div>
-        <div style="font-family: 'Great Vibes', cursive; font-size: 2.8rem; color: #FFFDF2; margin: 10px 0;">Dwip & Rupashree</div>
-        <p style="font-size: 1.1rem; opacity: 0.9;">You are cordially invited to our wedding</p>
+        <div style="font-family: 'Tiro Bangla', serif; font-size: 2rem; margin-bottom: 10px;">ॐ || শ্রী শ্রী প্রজাপতয়ে নমঃ ||</div>
+        <p style="font-family: 'Tiro Bangla', serif; font-size: 1.3rem; color: var(--light-gold);">সবিনয় নিবেদন</p>
+
+        <!-- Names in Both Bengali and English -->
+        <div style="font-family: 'Tiro Bangla', serif; font-size: 2.5rem; color: #FFFDF2; margin-top: 10px; font-weight: bold;">
+            দ্বীপ ও রূপশ্রী
+        </div>
+        <div style="font-family: 'Great Vibes', cursive; font-size: 2.8rem; color: var(--light-gold); margin-bottom: 10px;">
+            (Dwip & Rupashree)
+        </div>
+
+        <p style="font-family: 'Tiro Bangla', serif; font-size: 1.15rem; opacity: 0.95; max-width: 80%; line-height: 1.6;">
+            আমাদের শুভ বিবাহ উৎসবে আপনাকে ও আপনার পরিবারকে সাদর নিমন্ত্রণ।
+        </p>
+
+        <!-- Tap to Open Invitation Button -->
         <div class="open-card-btn">
             <i class="fa-solid fa-envelope-open-text"></i> Tap to Open Invitation
         </div>
@@ -493,7 +576,7 @@
     <!-- Animated Petals Container -->
     <div class="petals-container" id="petals"></div>
 
-    <!-- Local Shehnai Audio File (Hosted in your Repo) -->
+    <!-- Local Shehnai Audio File -->
     <audio id="shehnaiAudio" loop preload="auto">
         <source src="shehnai.mp3" type="audio/mpeg">
     </audio>
@@ -518,18 +601,32 @@
                 ॐ || শ্রী শ্রী প্রজাপতয়ে নমঃ ||
             </div>
             
-            <p class="sub-heading">শুভ বিবাহ কঙ্কণ</p>
+            <p class="sub-heading">শুভ বিবাহ বন্ধনে</p>
+
+            <!-- Animated Bride & Groom Silhouette Motifs -->
+            <div class="couple-animation-box">
+                <i class="fa-solid fa-user-tie bride-groom-icon groom-icon" title="Groom"></i>
+                <i class="fa-solid fa-heart heart-center"></i>
+                <i class="fa-solid fa-user-ninja bride-groom-icon bride-icon" style="transform: scaleX(-1);" title="Bride"></i>
+            </div>
 
             <h1 class="couple-names">Dwip & Rupashree</h1>
 
+            <!-- Updated Mantra -->
             <p class="mantra reveal">
-                "যদেতদ্ধৃদয়ং তব তদেতদ্ধৃদয়ং মম।<br>
-                যদেতদ্ধৃদয়ং মম তদেতদ্ধৃদয়ং তব॥"
+                "যদিদং হৃদয়ং তব, তদস্তু হৃদয়ং মম।<br>
+                যদিদং হৃদয়ং মম, তদস্তু হৃদয়ং তব।।"
             </p>
 
-            <p class="reveal" style="font-size: 1.15rem; color: #444; max-width: 650px; margin: 0 auto; line-height: 1.6;">
-                We cordially invite you and your family to bless us on the auspicious occasion of the wedding ceremony of <strong>Dwip</strong> & <strong>Rupashree</strong>.
-            </p>
+            <!-- Bilingual Invitation Line (Bengali & English) -->
+            <div class="bilingual-invitation reveal">
+                <p class="invitation-bn">
+                    আমাদের পরম প্রিয় <strong>দ্বীপ</strong> এবং <strong>রূপশ্রী</strong>-র শুভ বিবাহ উপলক্ষে আপনাকে ও আপনার পরিবারকে সপরিবারে উপস্থিত থেকে নবদম্পতিকে আশীর্বাদ করার জন্য বিনীত নিমন্ত্রণ জানাচ্ছি।
+                </p>
+                <p class="invitation-en">
+                    We cordially invite you and your family to bless us on the auspicious occasion of the wedding ceremony of <strong>Dwip</strong> & <strong>Rupashree</strong>.
+                </p>
+            </div>
         </header>
 
         <!-- Alpona Motif Divider -->
