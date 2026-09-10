@@ -4,22 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>শুভ বিবাহ | Dwip & Rupashree</title>
+    
     <!-- Google Fonts for Bengali & Serif Elegance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@300;400;600;700&family=Cinzel:wght@500;700&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@300;400;600;700&family=Cinzel:wght@500;700&family=Great+Vibes&family=Tiro+Bangla:ital@0;1&display=swap" rel="stylesheet">
     
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
-            --primary-red: #8B0000;
-            --deep-maroon: #5B0000;
+            --primary-red: #800000;
+            --deep-maroon: #4A0000;
             --gold: #D4AF37;
-            --light-gold: #F3E5AB;
-            --cream: #FFFDF0;
-            --text-dark: #333333;
+            --light-gold: #FDF1B8;
+            --cream: #FFFDF2;
+            --terracotta: #A0522D;
+            --text-dark: #2C1810;
         }
 
         * {
@@ -34,89 +36,191 @@
             color: var(--text-dark);
             text-align: center;
             overflow-x: hidden;
-            background-image: radial-gradient(var(--light-gold) 1px, transparent 0);
-            background-size: 24px 24px;
+            position: relative;
+            background-image: radial-gradient(rgba(212, 175, 55, 0.25) 1.5px, transparent 1.5px);
+            background-size: 28px 28px;
         }
 
-        /* Border / Alpona Frame */
-        .page-border {
-            border: 12px solid var(--primary-red);
-            outline: 4px solid var(--gold);
-            outline-offset: -8px;
-            min-height: 100vh;
-            padding: 20px;
+        /* Falling Flower Petals Animation */
+        .petals-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 10;
+            overflow: hidden;
         }
+
+        .petal {
+            position: absolute;
+            background: #FF8C00;
+            border-radius: 150% 0 150% 0;
+            opacity: 0.7;
+            animation: animatePetal 10s linear infinite;
+        }
+
+        .petal:nth-child(2n) {
+            background: #FFD700;
+            border-radius: 0 150% 0 150%;
+        }
+
+        @keyframes animatePetal {
+            0% {
+                top: -10%;
+                transform: translateX(0) rotate(0deg);
+                opacity: 0.8;
+            }
+            100% {
+                top: 110%;
+                transform: translateX(100px) rotate(360deg);
+                opacity: 0.2;
+            }
+        }
+
+        /* Traditional Border Container */
+        .page-border {
+            border: 10px solid var(--primary-red);
+            outline: 3px dashed var(--gold);
+            outline-offset: -7px;
+            min-height: 100vh;
+            padding: 25px 15px;
+            margin: 10px;
+            position: relative;
+            box-shadow: inset 0 0 15px rgba(128, 0, 0, 0.2);
+            animation: borderGlow 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes borderGlow {
+            0% { border-color: var(--primary-red); }
+            100% { border-color: var(--deep-maroon); }
+        }
+
+        /* Top & Bottom Alpona Corner Ornaments */
+        .alpona-corner {
+            width: 60px;
+            height: 60px;
+            position: absolute;
+            fill: var(--primary-red);
+            opacity: 0.85;
+        }
+        .top-left { top: 8px; left: 8px; }
+        .top-right { top: 8px; right: 8px; transform: scaleX(-1); }
+        .bottom-left { bottom: 8px; left: 8px; transform: scaleY(-1); }
+        .bottom-right { bottom: 8px; right: 8px; transform: scale(-1); }
 
         /* Hero Header */
         header {
-            padding: 40px 20px 20px 20px;
+            padding: 30px 15px 10px 15px;
+            position: relative;
+            z-index: 2;
         }
 
         .auspicious-symbol {
-            font-size: 2.2rem;
+            font-family: 'Tiro Bangla', serif;
+            font-size: 1.8rem;
             color: var(--primary-red);
-            margin-bottom: 10px;
             font-weight: bold;
+            text-shadow: 1px 1px 0px var(--light-gold);
+            animation: fadeInDown 1.2s ease-out;
         }
 
         .sub-heading {
-            font-family: 'Anek Bangla', sans-serif;
-            color: var(--primary-red);
-            font-size: 1.6rem;
+            color: var(--terracotta);
+            font-size: 1.4rem;
             font-weight: 600;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            margin-top: 5px;
         }
 
+        /* Couple Names with Shimmer */
         h1.couple-names {
             font-family: 'Great Vibes', cursive;
-            font-size: 3.8rem;
-            color: var(--deep-maroon);
+            font-size: 4rem;
+            background: linear-gradient(45deg, var(--deep-maroon), var(--primary-red), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
             margin: 15px 0;
-            text-shadow: 1px 1px 2px rgba(212, 175, 55, 0.5);
+            filter: drop-shadow(1px 2px 2px rgba(212, 175, 55, 0.4));
+            animation: zoomIn 1.5s ease;
         }
 
+        /* Mantra Box */
         .mantra {
+            font-family: 'Tiro Bangla', serif;
             font-style: italic;
             color: var(--primary-red);
             font-size: 1.2rem;
-            max-width: 650px;
-            margin: 0 auto 30px auto;
-            border-top: 1px solid var(--gold);
-            border-bottom: 1px solid var(--gold);
-            padding: 12px 0;
+            max-width: 600px;
+            margin: 15px auto;
+            border-top: 2px solid var(--gold);
+            border-bottom: 2px solid var(--gold);
+            padding: 12px 10px;
             line-height: 1.6;
+            background: rgba(254, 241, 184, 0.25);
+            border-radius: 6px;
         }
 
         .container {
-            max-width: 900px;
+            max-width: 850px;
             margin: 0 auto;
-            padding: 20px;
+            position: relative;
+            z-index: 2;
         }
 
-        /* Countdown Timer */
+        /* Alpona Divider SVG */
+        .alpona-divider {
+            width: 180px;
+            margin: 20px auto;
+            display: block;
+            fill: var(--primary-red);
+        }
+
+        /* Countdown Section */
         .countdown-container {
             background: linear-gradient(135deg, var(--primary-red), var(--deep-maroon));
             color: var(--gold);
-            padding: 25px;
+            padding: 25px 15px;
             border-radius: 15px;
             border: 2px solid var(--gold);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            box-shadow: 0 10px 25px rgba(74, 0, 0, 0.25);
             margin: 30px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .countdown-container::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.08), transparent);
+            transform: rotate(45deg);
+            animation: shine 4s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
         }
 
         .timer {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 15px;
             margin-top: 15px;
         }
 
         .timer-box {
-            background: rgba(0, 0, 0, 0.2);
-            padding: 10px 15px;
-            border-radius: 8px;
+            background: rgba(0, 0, 0, 0.35);
+            padding: 12px 10px;
+            border-radius: 10px;
             min-width: 70px;
             border: 1px solid var(--gold);
+            box-shadow: inset 0 0 5px rgba(212, 175, 55, 0.4);
         }
 
         .timer-box span {
@@ -124,15 +228,18 @@
             font-size: 1.8rem;
             font-weight: bold;
             font-family: 'Cinzel', serif;
+            color: #FFFFFF;
         }
 
         .timer-box label {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             color: var(--light-gold);
+            text-transform: uppercase;
         }
 
-        /* Events Section */
+        /* Events Cards */
         .section-title {
+            font-family: 'Tiro Bangla', serif;
             font-size: 2rem;
             color: var(--primary-red);
             margin: 40px 0 20px 0;
@@ -141,31 +248,40 @@
 
         .events-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
             gap: 25px;
             margin-top: 20px;
         }
 
         .event-card {
-            background: #ffffff;
+            background: #FFFFFF;
             border: 2px solid var(--gold);
-            border-radius: 12px;
-            padding: 25px 20px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
+            border-radius: 15px;
+            padding: 30px 20px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+            transition: all 0.4s ease;
+            position: relative;
         }
 
         .event-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-8px);
+            box-shadow: 0 12px 25px rgba(128, 0, 0, 0.15);
+            border-color: var(--primary-red);
         }
 
         .event-icon {
-            font-size: 2.2rem;
+            font-size: 2.4rem;
             color: var(--primary-red);
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            transition: transform 0.3s;
+        }
+
+        .event-card:hover .event-icon {
+            transform: scale(1.15) rotate(-5deg);
         }
 
         .event-title {
+            font-family: 'Tiro Bangla', serif;
             font-size: 1.6rem;
             color: var(--deep-maroon);
             margin-bottom: 8px;
@@ -174,69 +290,114 @@
 
         .event-date, .event-time {
             font-size: 1.05rem;
-            color: #555;
-            margin-bottom: 5px;
+            color: #444;
+            margin-bottom: 6px;
         }
 
-        /* Venue Section */
+        /* Location Section */
         .venue-section {
-            background: #ffffff;
+            background: #FFFFFF;
             border: 2px solid var(--gold);
             border-radius: 15px;
             padding: 35px 20px;
             margin: 40px 0;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.06);
         }
 
-        .map-icon-link {
+        .location-pulse-box {
+            position: relative;
             display: inline-block;
-            margin-top: 15px;
-            color: var(--primary-red);
-            font-size: 3rem;
-            transition: transform 0.3s ease, color 0.3s ease;
-            text-decoration: none;
+            margin: 20px 0 10px 0;
         }
 
-        .map-icon-link:hover {
-            transform: scale(1.15);
-            color: var(--deep-maroon);
-        }
-
-        .map-btn {
-            display: inline-block;
-            margin-top: 15px;
-            padding: 12px 25px;
-            background-color: var(--primary-red);
+        .location-icon-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-red), var(--deep-maroon));
             color: var(--gold);
+            border-radius: 50%;
+            font-size: 2.2rem;
             text-decoration: none;
+            border: 3px solid var(--gold);
+            box-shadow: 0 6px 15px rgba(128, 0, 0, 0.3);
+            margin: 0 auto;
+            transition: transform 0.3s ease;
+        }
+
+        .location-pulse-box::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 2px solid var(--primary-red);
+            animation: pulseWave 2s infinite;
+            z-index: -1;
+        }
+
+        @keyframes pulseWave {
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(1.6); opacity: 0; }
+        }
+
+        .location-icon-btn:hover {
+            transform: scale(1.1);
+            color: #FFFFFF;
+        }
+
+        .click-text {
             font-weight: bold;
-            border-radius: 25px;
-            border: 1px solid var(--gold);
-            transition: background 0.3s;
+            color: var(--primary-red);
+            margin-top: 10px;
+            font-size: 1rem;
         }
 
-        .map-btn:hover {
-            background-color: var(--deep-maroon);
-        }
-
+        /* Footer */
         footer {
-            margin-top: 50px;
+            margin-top: 40px;
             font-size: 1rem;
             color: var(--primary-red);
             padding-bottom: 20px;
         }
 
+        /* Keyframe Animations */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes zoomIn {
+            from { opacity: 0; transform: scale(0.85); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
         @media (max-width: 600px) {
-            h1.couple-names { font-size: 3rem; }
-            .timer { gap: 8px; }
-            .timer-box { min-width: 55px; padding: 8px 5px; }
-            .timer-box span { font-size: 1.4rem; }
+            h1.couple-names { font-size: 3.2rem; }
+            .auspicious-symbol { font-size: 1.5rem; }
+            .timer { gap: 6px; }
+            .timer-box { min-width: 55px; padding: 8px 4px; }
+            .timer-box span { font-size: 1.3rem; }
         }
     </style>
 </head>
 <body>
 
+    <!-- Animated Petals Container -->
+    <div class="petals-container" id="petals"></div>
+
     <div class="page-border">
+        
+        <!-- Alpona Corner Ornaments -->
+        <svg class="alpona-corner top-left" viewBox="0 0 100 100"><path d="M0,0 L100,0 C50,0 0,50 0,100 Z M30,10 C50,20 20,50 10,30 Z"/></svg>
+        <svg class="alpona-corner top-right" viewBox="0 0 100 100"><path d="M0,0 L100,0 C50,0 0,50 0,100 Z M30,10 C50,20 20,50 10,30 Z"/></svg>
+        <svg class="alpona-corner bottom-left" viewBox="0 0 100 100"><path d="M0,0 L100,0 C50,0 0,50 0,100 Z M30,10 C50,20 20,50 10,30 Z"/></svg>
+        <svg class="alpona-corner bottom-right" viewBox="0 0 100 100"><path d="M0,0 L100,0 C50,0 0,50 0,100 Z M30,10 C50,20 20,50 10,30 Z"/></svg>
+
         <header>
             <div class="auspicious-symbol">
                 ॐ || শ্রী শ্রী প্রজাপতয়ে নমঃ ||
@@ -252,16 +413,21 @@
                 যদেতদ্ধৃদয়ং মম তদেতদ্ধৃদয়ং তব॥"
             </p>
 
-            <p style="font-size: 1.2rem; color: #444; max-width: 700px; margin: 0 auto;">
+            <p style="font-size: 1.15rem; color: #444; max-width: 650px; margin: 0 auto; line-height: 1.6;">
                 We cordially invite you and your family to bless us on the auspicious occasion of the wedding ceremony of <strong>Dwip</strong> & <strong>Rupashree</strong>.
             </p>
         </header>
 
+        <!-- Alpona Motif Divider -->
+        <svg class="alpona-divider" viewBox="0 0 200 30">
+            <path d="M100 0 C110 15, 130 15, 140 0 C150 15, 170 15, 180 0 L200 15 L180 30 C170 15, 150 15, 140 30 C130 15, 110 15, 100 30 C90 15, 70 15, 60 30 C50 15, 30 15, 20 30 L0 15 L20 0 C30 15, 50 15, 60 0 C70 15, 90 15, 100 0 Z"/>
+        </svg>
+
         <div class="container">
 
-            <!-- Countdown Timer -->
+            <!-- Animated Countdown Timer -->
             <div class="countdown-container">
-                <h3 style="font-size: 1.4rem;">Wedding Countdown</h3>
+                <h3 style="font-size: 1.3rem; font-weight: 600;">Wedding Countdown</h3>
                 <div class="timer" id="countdown">
                     <div class="timer-box"><span id="days">00</span><label>Days</label></div>
                     <div class="timer-box"><span id="hours">00</span><label>Hours</label></div>
@@ -275,20 +441,20 @@
             <div class="events-grid">
 
                 <!-- Wedding -->
-                <div class="event-card" style="border: 2px solid var(--primary-red);">
+                <div class="event-card" style="border-color: var(--primary-red);">
                     <div class="event-icon"><i class="fa-solid fa-gem"></i></div>
                     <div class="event-title">শুভ বিবাহ (Wedding)</div>
-                    <div class="event-date"><i class="fa-regular fa-calendar"></i> January 29, 2027</div>
-                    <div class="event-time"><i class="fa-regular fa-clock"></i> Evening 7:00 PM</div>
+                    <div class="event-date"><i class="fa-regular fa-calendar" style="color: var(--primary-red);"></i> Friday, 29th Jan 2027</div>
+                    <div class="event-time"><i class="fa-regular fa-clock" style="color: var(--primary-red);"></i> Evening 7:00 PM</div>
                     <p style="margin-top: 10px; font-size: 0.9rem; color: #666;">Saat Paake Bandha, Subho Dristi, Sindoor Daan & Lagna Mahurat.</p>
                 </div>
 
                 <!-- Reception -->
                 <div class="event-card">
                     <div class="event-icon"><i class="fa-solid fa-utensils"></i></div>
-                    <div class="event-title">বৌ ভাত (Bou Bhat & Reception)</div>
-                    <div class="event-date"><i class="fa-regular fa-calendar"></i> January 31, 2027</div>
-                    <div class="event-time"><i class="fa-regular fa-clock"></i> Evening 7:30 PM</div>
+                    <div class="event-title">বৌ ভাত (Reception)</div>
+                    <div class="event-date"><i class="fa-regular fa-calendar" style="color: var(--primary-red);"></i> Sunday, 31st Jan 2027</div>
+                    <div class="event-time"><i class="fa-regular fa-clock" style="color: var(--primary-red);"></i> Evening 7:30 PM</div>
                     <p style="margin-top: 10px; font-size: 0.9rem; color: #666;">A grand evening of feast and celebration with friends & family.</p>
                 </div>
 
@@ -296,32 +462,29 @@
 
             <!-- Reception Venue Location Section -->
             <div class="venue-section">
-                <h2 style="color: var(--primary-red); font-size: 1.8rem; margin-bottom: 10px;">
+                <h2 style="font-family: 'Tiro Bangla', serif; color: var(--primary-red); font-size: 1.8rem; margin-bottom: 8px;">
                     প্রীতিভোজ বাসর (Reception Venue Location)
                 </h2>
-                <p style="color: #555; margin-bottom: 15px;">Click the icon or button below to navigate to the reception venue on Google Maps:</p>
+                <p style="color: #555; margin-bottom: 10px;">Tap the icon below to open the location directly in Google Maps:</p>
 
-                <!-- Icon pointing to Google Maps -->
-                <a href="https://maps.app.goo.gl/TbTYBpvCFkq9Cfxu9" target="_blank" class="map-icon-link" title="Click to view Reception Venue Location">
-                    <i class="fa-solid fa-location-dot"></i>
-                </a>
+                <div class="location-pulse-box">
+                    <a href="https://maps.app.goo.gl/TbTYBpvCFkq9Cfxu9" target="_blank" class="location-icon-btn" title="Open Venue on Google Maps">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </a>
+                </div>
 
-                <br>
-
-                <a href="https://maps.app.goo.gl/TbTYBpvCFkq9Cfxu9" target="_blank" class="map-btn">
-                    Get Location on Google Maps <i class="fa-solid fa-arrow-right"></i>
-                </a>
+                <div class="click-text">📍 Click to Open Maps Navigation</div>
             </div>
 
         </div>
 
         <footer>
-            <p>বিনীত - পরিবার ও আত্মীয়স্বজন</p>
-            <p style="font-size: 0.85rem; margin-top: 10px; opacity: 0.8;">#DwipWedsRupashree | With Best Compliments from Family & Friends</p>
+            <p style="font-family: 'Tiro Bangla', serif; font-size: 1.1rem; font-weight: bold;">বিনীত - পরিবার ও আত্মীয়স্বজন</p>
+            <p style="font-size: 0.85rem; margin-top: 8px; opacity: 0.85;">#DwipWedsRupashree | With Best Compliments from Family & Friends</p>
         </footer>
     </div>
 
-    <!-- JavaScript for Countdown Timer -->
+    <!-- JavaScript for Countdown Timer and Petal Animation -->
     <script>
         // Target Wedding Date (January 29, 2027)
         const weddingDate = new Date("January 29, 2027 19:00:00").getTime();
@@ -345,6 +508,25 @@
                 document.getElementById("countdown").innerHTML = "<h3>The Wedding Celebration Has Begun!</h3>";
             }
         }, 1000);
+
+        // Generate Falling Flower Petals dynamically
+        const petalsContainer = document.getElementById('petals');
+        const numberOfPetals = 18;
+
+        for (let i = 0; i < numberOfPetals; i++) {
+            const petal = document.createElement('div');
+            petal.classList.add('petal');
+            
+            // Randomize size, starting position, and animation delay
+            const size = Math.random() * 12 + 8;
+            petal.style.width = `${size}px`;
+            petal.style.height = `${size * 1.4}px`;
+            petal.style.left = `${Math.random() * 100}%`;
+            petal.style.animationDelay = `${Math.random() * 8}s`;
+            petal.style.animationDuration = `${Math.random() * 5 + 7}s`;
+
+            petalsContainer.appendChild(petal);
+        }
     </script>
 </body>
 </html>
