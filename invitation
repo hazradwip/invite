@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>শুভ বিবাহ | Dwip & Rupashree</title>
+    <!-- Google Fonts for Bengali & Serif Elegance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@300;400;600;700&family=Cinzel:wght@500;700&family=Great+Vibes&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-red: #8B0000;
+            --deep-maroon: #5B0000;
+            --gold: #D4AF37;
+            --light-gold: #F3E5AB;
+            --cream: #FFFDF0;
+            --text-dark: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Anek Bangla', sans-serif;
+            background-color: var(--cream);
+            color: var(--text-dark);
+            text-align: center;
+            overflow-x: hidden;
+            background-image: radial-gradient(var(--light-gold) 1px, transparent 0);
+            background-size: 24px 24px;
+        }
+
+        /* Border / Alpona Frame */
+        .page-border {
+            border: 12px solid var(--primary-red);
+            outline: 4px solid var(--gold);
+            outline-offset: -8px;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        /* Hero Header */
+        header {
+            padding: 40px 20px 20px 20px;
+        }
+
+        .auspicious-symbol {
+            font-size: 2.2rem;
+            color: var(--primary-red);
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .sub-heading {
+            font-family: 'Anek Bangla', sans-serif;
+            color: var(--primary-red);
+            font-size: 1.6rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        h1.couple-names {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.8rem;
+            color: var(--deep-maroon);
+            margin: 15px 0;
+            text-shadow: 1px 1px 2px rgba(212, 175, 55, 0.5);
+        }
+
+        .mantra {
+            font-style: italic;
+            color: var(--primary-red);
+            font-size: 1.2rem;
+            max-width: 650px;
+            margin: 0 auto 30px auto;
+            border-top: 1px solid var(--gold);
+            border-bottom: 1px solid var(--gold);
+            padding: 12px 0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Countdown Timer */
+        .countdown-container {
+            background: linear-gradient(135deg, var(--primary-red), var(--deep-maroon));
+            color: var(--gold);
+            padding: 25px;
+            border-radius: 15px;
+            border: 2px solid var(--gold);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            margin: 30px 0;
+        }
+
+        .timer {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 15px;
+        }
+
+        .timer-box {
+            background: rgba(0, 0, 0, 0.2);
+            padding: 10px 15px;
+            border-radius: 8px;
+            min-width: 70px;
+            border: 1px solid var(--gold);
+        }
+
+        .timer-box span {
+            display: block;
+            font-size: 1.8rem;
+            font-weight: bold;
+            font-family: 'Cinzel', serif;
+        }
+
+        .timer-box label {
+            font-size: 0.85rem;
+            color: var(--light-gold);
+        }
+
+        /* Events Section */
+        .section-title {
+            font-size: 2rem;
+            color: var(--primary-red);
+            margin: 40px 0 20px 0;
+            font-weight: 700;
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .event-card {
+            background: #ffffff;
+            border: 2px solid var(--gold);
+            border-radius: 12px;
+            padding: 25px 20px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .event-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .event-icon {
+            font-size: 2.2rem;
+            color: var(--primary-red);
+            margin-bottom: 10px;
+        }
+
+        .event-title {
+            font-size: 1.6rem;
+            color: var(--deep-maroon);
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .event-date, .event-time {
+            font-size: 1.05rem;
+            color: #555;
+            margin-bottom: 5px;
+        }
+
+        /* Venue Section */
+        .venue-section {
+            background: #ffffff;
+            border: 2px solid var(--gold);
+            border-radius: 15px;
+            padding: 35px 20px;
+            margin: 40px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .map-icon-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: var(--primary-red);
+            font-size: 3rem;
+            transition: transform 0.3s ease, color 0.3s ease;
+            text-decoration: none;
+        }
+
+        .map-icon-link:hover {
+            transform: scale(1.15);
+            color: var(--deep-maroon);
+        }
+
+        .map-btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 12px 25px;
+            background-color: var(--primary-red);
+            color: var(--gold);
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 25px;
+            border: 1px solid var(--gold);
+            transition: background 0.3s;
+        }
+
+        .map-btn:hover {
+            background-color: var(--deep-maroon);
+        }
+
+        footer {
+            margin-top: 50px;
+            font-size: 1rem;
+            color: var(--primary-red);
+            padding-bottom: 20px;
+        }
+
+        @media (max-width: 600px) {
+            h1.couple-names { font-size: 3rem; }
+            .timer { gap: 8px; }
+            .timer-box { min-width: 55px; padding: 8px 5px; }
+            .timer-box span { font-size: 1.4rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-border">
+        <header>
+            <div class="auspicious-symbol">
+                ॐ || শ্রী শ্রী প্রজাপতয়ে নমঃ ||
+            </div>
+            
+            <p class="sub-heading">শুভ বিবাহ কঙ্কণ</p>
+
+            <!-- Couple Name -->
+            <h1 class="couple-names">Dwip & Rupashree</h1>
+
+            <p class="mantra">
+                "যদেতদ্ধৃদয়ং তব তদেতদ্ধৃদয়ং মম।<br>
+                যদেতদ্ধৃদয়ং মম তদেতদ্ধৃদয়ং তব॥"
+            </p>
+
+            <p style="font-size: 1.2rem; color: #444; max-width: 700px; margin: 0 auto;">
+                We cordially invite you and your family to bless us on the auspicious occasion of the wedding ceremony of <strong>Dwip</strong> & <strong>Rupashree</strong>.
+            </p>
+        </header>
+
+        <div class="container">
+
+            <!-- Countdown Timer -->
+            <div class="countdown-container">
+                <h3 style="font-size: 1.4rem;">Wedding Countdown</h3>
+                <div class="timer" id="countdown">
+                    <div class="timer-box"><span id="days">00</span><label>Days</label></div>
+                    <div class="timer-box"><span id="hours">00</span><label>Hours</label></div>
+                    <div class="timer-box"><span id="minutes">00</span><label>Minutes</label></div>
+                    <div class="timer-box"><span id="seconds">00</span><label>Seconds</label></div>
+                </div>
+            </div>
+
+            <!-- Itinerary / Events -->
+            <h2 class="section-title">পর্বানুষ্ঠান (Schedule of Events)</h2>
+            <div class="events-grid">
+
+                <!-- Wedding -->
+                <div class="event-card" style="border: 2px solid var(--primary-red);">
+                    <div class="event-icon"><i class="fa-solid fa-gem"></i></div>
+                    <div class="event-title">শুভ বিবাহ (Wedding)</div>
+                    <div class="event-date"><i class="fa-regular fa-calendar"></i> January 29, 2027</div>
+                    <div class="event-time"><i class="fa-regular fa-clock"></i> Evening 7:00 PM</div>
+                    <p style="margin-top: 10px; font-size: 0.9rem; color: #666;">Saat Paake Bandha, Subho Dristi, Sindoor Daan & Lagna Mahurat.</p>
+                </div>
+
+                <!-- Reception -->
+                <div class="event-card">
+                    <div class="event-icon"><i class="fa-solid fa-utensils"></i></div>
+                    <div class="event-title">বৌ ভাত (Bou Bhat & Reception)</div>
+                    <div class="event-date"><i class="fa-regular fa-calendar"></i> January 31, 2027</div>
+                    <div class="event-time"><i class="fa-regular fa-clock"></i> Evening 7:30 PM</div>
+                    <p style="margin-top: 10px; font-size: 0.9rem; color: #666;">A grand evening of feast and celebration with friends & family.</p>
+                </div>
+
+            </div>
+
+            <!-- Reception Venue Location Section -->
+            <div class="venue-section">
+                <h2 style="color: var(--primary-red); font-size: 1.8rem; margin-bottom: 10px;">
+                    প্রীতিভোজ বাসর (Reception Venue Location)
+                </h2>
+                <p style="color: #555; margin-bottom: 15px;">Click the icon or button below to navigate to the reception venue on Google Maps:</p>
+
+                <!-- Icon pointing to Google Maps -->
+                <a href="https://maps.app.goo.gl/TbTYBpvCFkq9Cfxu9" target="_blank" class="map-icon-link" title="Click to view Reception Venue Location">
+                    <i class="fa-solid fa-location-dot"></i>
+                </a>
+
+                <br>
+
+                <a href="https://maps.app.goo.gl/TbTYBpvCFkq9Cfxu9" target="_blank" class="map-btn">
+                    Get Location on Google Maps <i class="fa-solid fa-arrow-right"></i>
+                </a>
+            </div>
+
+        </div>
+
+        <footer>
+            <p>বিনীত - পরিবার ও আত্মীয়স্বজন</p>
+            <p style="font-size: 0.85rem; margin-top: 10px; opacity: 0.8;">#DwipWedsRupashree | With Best Compliments from Family & Friends</p>
+        </footer>
+    </div>
+
+    <!-- JavaScript for Countdown Timer -->
+    <script>
+        // Target Wedding Date (January 29, 2027)
+        const weddingDate = new Date("January 29, 2027 19:00:00").getTime();
+
+        const countdownFn = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days < 10 ? '0' + days : days;
+            document.getElementById("hours").innerText = hours < 10 ? '0' + hours : hours;
+            document.getElementById("minutes").innerText = minutes < 10 ? '0' + minutes : minutes;
+            document.getElementById("seconds").innerText = seconds < 10 ? '0' + seconds : seconds;
+
+            if (distance < 0) {
+                clearInterval(countdownFn);
+                document.getElementById("countdown").innerHTML = "<h3>The Wedding Celebration Has Begun!</h3>";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
