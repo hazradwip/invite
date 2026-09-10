@@ -4,16 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Open Graph Meta Tags for WhatsApp Preview -->
+    <!-- Primary WhatsApp Open Graph Preview Tags -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="আমন্ত্রণ | Dwip & Rupashree Reception">
-    <meta property="og:description" content="আমাদের বৌ ভাত ও প্রীতিভোজ উপলক্ষে আপনাকে ও আপনার পরিবারকে সপরিবারে বিনীত নিমন্ত্রণ জানাচ্ছি।">
-    <meta property="og:image" content="https://hazradwip.github.io/invite/preview-thumbnail.png">
+    <meta property="og:site_name" content="Dwip & Rupashree Invitation">
+    <meta property="og:title" content="আমন্ত্রণ | Dwip & Rupashree">
+    <meta property="og:description" content="আমাদের শুভ অনুষ্ঠান উপলক্ষে আপনাকে ও আপনার পরিবারকে সপরিবারে বিনীত নিমন্ত্রণ জানাচ্ছি।">
+    <meta property="og:image" content="https://hazradwip.github.io/wedding-invite/preview-thumbnail.png">
+    <meta property="og:image:secure_url" content="https://hazradwip.github.io/wedding-invite/preview-thumbnail.png">
+    <meta property="og:image:type" content="image/png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
-    <meta property="og:url" content="https://hazradwip.github.io/invite/">
+    <meta property="og:url" content="https://hazradwip.github.io/wedding-invite/">
 
-    <title>প্রীতিভোজ ও বৌ ভাত | Dwip & Rupashree</title>
+    <title>শুভ বিবাহ | Dwip & Rupashree</title>
     
     <!-- Google Fonts for Bengali & Serif Elegance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,14 +28,13 @@
 
     <style>
         :root {
-            --light-grey-bg: #EBF0F5;
-            --soft-grey: #F4F7FA;
-            --card-white: #FFFFFF;
-            --navy-blue: #0B1B3D;
-            --slate-grey: #2C3E60;
-            --gold-accent: #C59B27;
+            --primary-red: #800000;
+            --deep-maroon: #4A0000;
+            --gold: #D4AF37;
             --light-gold: #FDF1B8;
-            --text-dark: #0A1428;
+            --cream: #FFFDF2;
+            --terracotta: #A0522D;
+            --text-dark: #2C1810;
         }
 
         * {
@@ -43,66 +45,90 @@
 
         body {
             font-family: 'Anek Bangla', sans-serif;
-            background-color: var(--light-grey-bg);
+            background-color: var(--cream);
             color: var(--text-dark);
             text-align: center;
             overflow-x: hidden;
             position: relative;
-            background-image: radial-gradient(rgba(11, 27, 61, 0.08) 1.5px, transparent 1.5px);
+            background-image: radial-gradient(rgba(212, 175, 55, 0.25) 1.5px, transparent 1.5px);
             background-size: 28px 28px;
         }
 
-        /* ---------------- MINIMALIST FLOATING PEARL CARD TAP TO OPEN SCREEN ---------------- */
+        /* ---------------- TAP TO OPEN ENVELOPE SCREEN (UNTOUCHED) ---------------- */
         .welcome-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100vw;
             height: 100vh;
-            background-color: rgba(235, 240, 245, 0.98);
-            background-image: radial-gradient(circle at center, #FFFFFF 0%, #DCE4EC 100%);
+            background-color: #F7F4EE;
+            background-image: radial-gradient(circle at center, #FCFAF6 0%, #EFEBE4 100%);
             z-index: 9999;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             cursor: pointer;
+            transition: transform 0.9s cubic-bezier(0.77, 0, 0.175, 1), opacity 0.8s ease, visibility 0.8s ease;
             overflow: hidden;
-            transition: opacity 0.8s ease, visibility 0.8s ease;
+            box-shadow: inset 0 0 80px rgba(0,0,0,0.08);
+            perspective: 1000px;
         }
 
         .welcome-overlay.hidden {
             opacity: 0;
             visibility: hidden;
+            transform: translateY(-100vh);
             pointer-events: none;
         }
 
-        /* Floating Minimalist Card Wrapper */
-        .floating-card-frame {
+        .fullscreen-top-flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 50vw solid transparent;
+            border-right: 50vw solid transparent;
+            border-top: 52vh solid #EFEAE2;
+            transform-origin: top;
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 6;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.12));
+        }
+
+        .welcome-overlay.open .fullscreen-top-flap {
+            transform: rotateX(180deg);
+            z-index: 2;
+        }
+
+        .fullscreen-bottom-pocket {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 50vw solid #EAE5DC;
+            border-right: 50vw solid #EAE5DC;
+            border-bottom: 48vh solid #F2ECE1;
+            z-index: 5;
+            filter: drop-shadow(0 -5px 15px rgba(0,0,0,0.06));
+        }
+
+        .envelope-center-content {
             position: relative;
-            width: clamp(290px, 85vw, 420px);
-            padding: 36px 25px;
-            border-radius: 18px;
-            background: #FFFFFF;
-            border: 1.5px solid var(--gold-accent);
-            box-shadow: 
-                0 20px 40px rgba(11, 27, 61, 0.12),
-                inset 0 0 15px rgba(197, 155, 39, 0.05);
+            z-index: 8;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
-        }
-
-        .welcome-overlay.open .floating-card-frame {
-            transform: translateY(-80px) scale(0.9);
-            opacity: 0;
+            padding: 20px;
         }
 
         .bengali-amontron-title {
             font-family: 'Tiro Bangla', serif;
             font-size: clamp(1.8rem, 5.5vw, 2.4rem);
-            color: var(--navy-blue);
+            color: var(--primary-red);
             font-weight: 700;
             letter-spacing: 1px;
             line-height: 1.2;
@@ -111,7 +137,7 @@
         .english-invitation-subtitle {
             font-family: 'Cinzel', serif;
             font-size: clamp(0.85rem, 2.5vw, 1rem);
-            color: var(--gold-accent);
+            color: var(--terracotta);
             letter-spacing: 3px;
             text-transform: uppercase;
             font-weight: 600;
@@ -122,94 +148,68 @@
         .tap-reveal-title {
             font-family: 'Great Vibes', cursive;
             font-size: clamp(1.8rem, 4.5vw, 2.3rem);
-            color: var(--slate-grey);
+            color: #6B321D;
             text-shadow: 0 1px 2px rgba(255,255,255,0.8);
             margin-bottom: 4px;
+            letter-spacing: 1px;
         }
 
-        /* Navy Blue & Gold Wax Seal Stamp */
         .wax-seal {
             position: relative;
             width: clamp(80px, 20vw, 100px);
             height: clamp(80px, 20vw, 100px);
-            background: radial-gradient(circle at 32% 28%, #1B3566 0%, #0B1B3D 60%, #040A1A 90%);
-            border-radius: 48% 52% 50% 50% / 50% 52% 48% 50%;
+            background: radial-gradient(circle at 32% 28%, #BC3F25 0%, #8C1C0C 50%, #4D0902 90%);
+            border-radius: 46% 54% 52% 48% / 53% 47% 53% 47%;
             display: flex;
             align-items: center;
             justify-content: center;
             box-shadow: 
-                0 10px 20px rgba(11, 27, 61, 0.3),
-                inset 0 3px 5px rgba(255, 255, 255, 0.4),
-                inset 0 -6px 10px rgba(0, 0, 0, 0.6);
+                0 14px 28px rgba(0, 0, 0, 0.45),
+                0 4px 10px rgba(0, 0, 0, 0.3),
+                inset 0 4px 6px rgba(255, 255, 255, 0.45),
+                inset 0 -8px 14px rgba(0, 0, 0, 0.7);
             margin: 10px 0 14px 0;
+            transition: opacity 0.5s ease;
             animation: pulseSeal 2.2s infinite alternate;
         }
 
         .wax-seal::before {
             content: '';
             position: absolute;
-            width: 80%;
-            height: 80%;
+            width: 78%;
+            height: 78%;
             border-radius: 50%;
-            border: 1.5px solid rgba(197, 155, 39, 0.6);
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+            border: 2px solid rgba(255, 215, 0, 0.35);
+            box-shadow: 
+                inset 0 3px 6px rgba(0, 0, 0, 0.8),
+                0 1px 2px rgba(255, 255, 255, 0.25);
         }
 
         .prajapati-icon {
             font-size: clamp(2rem, 5vw, 2.5rem);
-            color: var(--gold-accent);
-            text-shadow: -1px -1px 2px rgba(0, 0, 0, 0.8);
+            color: #E2C686;
+            text-shadow: 
+                -1px -1px 2px rgba(0, 0, 0, 0.9),
+                1px 1px 2px rgba(255, 245, 200, 0.5);
+            filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.85));
             position: relative;
             z-index: 2;
         }
 
+        .welcome-overlay.open .wax-seal {
+            opacity: 0;
+            pointer-events: none;
+        }
+
         @keyframes pulseSeal {
-            0% { transform: scale(1); filter: drop-shadow(0 0 5px rgba(11,27,61,0.2)); }
-            100% { transform: scale(1.06); filter: drop-shadow(0 0 15px rgba(197, 155, 39, 0.4)); }
+            0% { transform: scale(1); filter: drop-shadow(0 0 6px rgba(140, 28, 12, 0.4)); }
+            100% { transform: scale(1.06); filter: drop-shadow(0 0 16px rgba(140, 28, 12, 0.65)); }
         }
 
         .overlay-invitation-text {
-            color: var(--navy-blue);
-        }
-
-        /* ---------------- DISPLAY DATE BADGE ---------------- */
-        .date-display-badge {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            background: rgba(197, 155, 39, 0.12);
-            color: var(--navy-blue);
-            border: 1.5px solid var(--gold-accent);
-            padding: 8px 18px;
-            border-radius: 20px;
-            font-weight: 700;
-            font-size: 1.05rem;
-            margin: 10px auto;
-        }
-
-        /* Venue Address Box inside Date Card */
-        .venue-address-block {
-            margin-top: 14px;
-            padding-top: 12px;
-            border-top: 1px dashed var(--gold-accent);
-            color: var(--navy-blue);
-        }
-
-        .venue-name-title {
-            font-family: 'Tiro Bangla', serif;
-            font-size: 1.25rem;
-            font-weight: bold;
-            color: var(--navy-blue);
-            margin-bottom: 4px;
-        }
-
-        /* BOLDED VENUE ADDRESS TEXT */
-        .venue-address-text {
-            font-size: 0.95rem;
-            font-weight: 700;
-            color: #1A2840;
-            line-height: 1.5;
+            color: #4A2213;
+            text-shadow: 0 1px 1px rgba(255,255,255,0.8);
+            max-width: 90%;
         }
 
         /* ---------------- PETALS & SPARKLES ---------------- */
@@ -224,26 +224,26 @@
 
         .petal {
             position: absolute;
-            background: var(--gold-accent);
+            background: #FF8C00;
             border-radius: 150% 0 150% 0;
-            opacity: 0.45;
+            opacity: 0.7;
             animation: animatePetal 10s linear infinite;
         }
 
         .petal:nth-child(2n) {
-            background: #8A9CB3;
+            background: #FFD700;
             border-radius: 0 150% 0 150%;
         }
 
         @keyframes animatePetal {
-            0% { top: -10%; transform: translateX(0) rotate(0deg); opacity: 0.45; }
-            100% { top: 110%; transform: translateX(100px) rotate(360deg); opacity: 0.1; }
+            0% { top: -10%; transform: translateX(0) rotate(0deg); opacity: 0.8; }
+            100% { top: 110%; transform: translateX(100px) rotate(360deg); opacity: 0.2; }
         }
 
         .click-sparkle {
             position: absolute;
             width: 10px; height: 10px;
-            background: var(--gold-accent);
+            background: var(--gold);
             border-radius: 50%;
             pointer-events: none;
             z-index: 999;
@@ -255,37 +255,47 @@
             100% { transform: scale(3) translateY(-30px); opacity: 0; }
         }
 
-        /* ---------------- MAIN WEBSITE LAYOUT ---------------- */
+        /* ---------------- HIGH-DEFINITION RESPONSIVE MAIN LAYOUT ---------------- */
         .page-border {
-            border: 8px solid var(--navy-blue);
-            outline: 2px dashed var(--gold-accent);
-            outline-offset: -6px;
+            border: 10px solid var(--primary-red);
+            outline: 3px dashed var(--gold);
+            outline-offset: -7px;
             min-height: 100vh;
             padding: 25px 15px;
             margin: 10px;
             position: relative;
-            background-color: var(--soft-grey);
-            box-shadow: inset 0 0 20px rgba(11, 27, 61, 0.08);
+            background-color: var(--cream);
+            box-shadow: inset 0 0 15px rgba(128, 0, 0, 0.2);
+            animation: borderGlow 4s ease-in-out infinite alternate;
         }
 
-        .alpona-corner {
-            width: 50px; height: 50px;
-            position: absolute;
-            fill: var(--navy-blue);
-            opacity: 0.85;
+        @keyframes borderGlow {
+            0% { border-color: var(--primary-red); }
+            100% { border-color: var(--deep-maroon); }
         }
-        .top-left { top: 8px; left: 8px; }
-        .top-right { top: 8px; right: 8px; transform: scaleX(-1); }
-        .bottom-left { bottom: 8px; left: 8px; transform: scaleY(-1); }
-        .bottom-right { bottom: 8px; right: 8px; transform: scale(-1); }
+
+        /* AUTHENTIC BENGALI BRIDAL KALKA VECTOR CORNERS */
+        .kolka-corner-svg {
+            position: absolute;
+            width: clamp(75px, 20vw, 150px);
+            height: clamp(75px, 20vw, 150px);
+            pointer-events: none;
+            z-index: 3;
+            filter: drop-shadow(2px 3px 5px rgba(74, 0, 0, 0.25));
+        }
+
+        .top-left-kolka { top: 4px; left: 4px; }
+        .top-right-kolka { top: 4px; right: 4px; transform: scaleX(-1); }
+        .bottom-left-kolka { bottom: 4px; left: 4px; transform: scaleY(-1); }
+        .bottom-right-kolka { bottom: 4px; right: 4px; transform: scale(-1); }
 
         .mandala-bg {
             position: absolute;
             top: 60px; left: 50%;
             transform: translateX(-50%);
             width: 280px; height: 280px;
-            opacity: 0.06;
-            fill: var(--navy-blue);
+            opacity: 0.08;
+            fill: var(--primary-red);
             pointer-events: none;
             animation: rotateMandala 60s linear infinite;
             z-index: 1;
@@ -302,7 +312,7 @@
             max-width: 600px;
             margin: 0 auto;
             position: relative;
-            z-index: 2;
+            z-index: 4;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -321,25 +331,60 @@
         .auspicious-symbol {
             font-family: 'Tiro Bangla', serif;
             font-size: 1.8rem;
-            color: var(--navy-blue);
+            color: var(--primary-red);
             font-weight: bold;
-            text-shadow: 1px 1px 0px #FFFFFF;
+            text-shadow: 1px 1px 0px var(--light-gold);
             padding: 0 5px;
         }
 
         .sub-heading {
-            color: var(--slate-grey);
+            color: var(--terracotta);
             font-size: 1.4rem;
             font-weight: 600;
             letter-spacing: 2px;
             margin-top: 5px;
         }
 
+        .couple-animation-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin: 15px auto 5px auto;
+        }
+
+        .bride-groom-icon {
+            font-size: 2.8rem;
+            color: var(--primary-red);
+            filter: drop-shadow(0 4px 6px rgba(128, 0, 0, 0.2));
+            animation: floatCouple 3s ease-in-out infinite alternate;
+        }
+
+        .groom-icon { animation-delay: 0s; }
+        .bride-icon { color: var(--deep-maroon); animation-delay: 1.5s; }
+
+        .heart-center {
+            font-size: 1.5rem;
+            color: var(--gold);
+            animation: pulseHeart 1.5s infinite;
+        }
+
+        @keyframes floatCouple {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-10px) rotate(4deg); }
+        }
+
+        @keyframes pulseHeart {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+
         h1.couple-names {
             font-family: 'Great Vibes', cursive;
             font-size: clamp(2.4rem, 8vw, 4rem);
             line-height: 1.3;
-            background: linear-gradient(90deg, var(--navy-blue), var(--gold-accent), var(--slate-grey));
+            background: linear-gradient(90deg, var(--deep-maroon), var(--gold), var(--primary-red));
             background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -347,7 +392,7 @@
             padding: 0 10px;
             word-wrap: break-word;
             overflow-wrap: break-word;
-            filter: drop-shadow(1px 1px 1px rgba(0, 0, 0, 0.15));
+            filter: drop-shadow(1px 2px 2px rgba(212, 175, 55, 0.4));
             animation: shineText 4s linear infinite;
         }
 
@@ -359,33 +404,32 @@
             max-width: 600px;
             margin: 16px 0;
             border-radius: 12px;
-            border: 1.5px solid var(--gold-accent);
-            box-shadow: 0 4px 14px rgba(11, 27, 61, 0.05);
+            border: 1.5px solid var(--gold);
+            box-shadow: 0 4px 14px rgba(0,0,0,0.04);
             box-sizing: border-box;
-            background: #FFFFFF;
+            background: rgba(255, 255, 255, 0.95);
         }
 
         /* Mantra Box */
         .mantra {
             font-family: 'Tiro Bangla', serif;
             font-style: italic;
-            color: var(--navy-blue);
+            color: var(--primary-red);
             font-size: 1.18rem;
             padding: 18px 20px;
             line-height: 1.75;
-            background: #FAFAF7;
+            background: rgba(254, 241, 184, 0.35);
         }
 
         /* Bilingual Invitation Card */
         .bilingual-invitation {
             padding: 22px;
-            background: #FFFFFF;
         }
 
         .invitation-bn {
             font-family: 'Tiro Bangla', serif;
             font-size: 1.15rem;
-            color: var(--navy-blue);
+            color: var(--deep-maroon);
             line-height: 1.7;
             margin-bottom: 14px;
             font-weight: 600;
@@ -393,9 +437,9 @@
 
         .invitation-en {
             font-size: 1.02rem;
-            color: #3A4A5E;
+            color: #444;
             line-height: 1.6;
-            border-top: 1px dashed var(--gold-accent);
+            border-top: 1px dashed var(--gold);
             padding-top: 12px;
         }
 
@@ -406,34 +450,161 @@
             height: 24px;
             margin: 22px auto 10px auto;
             display: block;
-            fill: var(--navy-blue);
+            fill: var(--primary-red);
+        }
+
+        /* Countdown Container */
+        .countdown-container {
+            background: linear-gradient(135deg, var(--primary-red), var(--deep-maroon));
+            color: var(--gold);
+            padding: 25px 15px;
+            border-radius: 15px;
+            border: 2px solid var(--gold);
+            box-shadow: 0 10px 25px rgba(74, 0, 0, 0.25);
+            margin: 20px 0;
+            position: relative;
+            overflow: hidden;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .timer {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .timer-box {
+            background: rgba(0, 0, 0, 0.35);
+            padding: 12px 10px;
+            border-radius: 10px;
+            min-width: 70px;
+            border: 1px solid var(--gold);
+        }
+
+        .timer-box span {
+            display: block;
+            font-size: 1.8rem;
+            font-weight: bold;
+            font-family: 'Cinzel', serif;
+            color: #FFFFFF;
+        }
+
+        .timer-box label {
+            font-size: 0.8rem;
+            color: var(--light-gold);
+            text-transform: uppercase;
         }
 
         /* Event Schedule Card */
         .event-card-single {
-            background: #FFFFFF;
             padding: 30px 20px;
             transition: all 0.4s ease;
         }
 
         .event-card-single:hover {
             transform: translateY(-6px);
-            box-shadow: 0 12px 25px rgba(11, 27, 61, 0.12);
-            border-color: var(--navy-blue);
+            box-shadow: 0 12px 25px rgba(128, 0, 0, 0.15);
+            border-color: var(--primary-red);
         }
 
         .event-icon {
             font-size: 2.6rem;
-            color: var(--navy-blue);
+            color: var(--primary-red);
             margin-bottom: 12px;
         }
 
         .event-title {
             font-family: 'Tiro Bangla', serif;
             font-size: 1.8rem;
-            color: var(--navy-blue);
+            color: var(--deep-maroon);
             margin-bottom: 8px;
             font-weight: 600;
+        }
+
+        /* ---------------- 3-BLOCK SCRATCH DESIGN ---------------- */
+        .scratch-3block-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            margin: 15px auto 10px auto;
+            max-width: 380px;
+        }
+
+        .scratch-box {
+            position: relative;
+            flex: 1;
+            height: 55px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1.5px solid var(--gold);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+            user-select: none;
+            background: #FFFFFF;
+        }
+
+        .scratch-text-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 1;
+        }
+
+        .scratch-val {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--primary-red);
+            font-family: 'Cinzel', serif;
+            line-height: 1;
+        }
+
+        .scratch-lbl {
+            font-size: 0.68rem;
+            color: var(--terracotta);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 3px;
+        }
+
+        canvas.scratch-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            cursor: pointer;
+        }
+
+        /* Venue Address Box inside Date Card */
+        .venue-address-block {
+            margin-top: 14px;
+            padding-top: 12px;
+            border-top: 1px dashed var(--gold);
+            color: var(--deep-maroon);
+        }
+
+        .venue-name-title {
+            font-family: 'Tiro Bangla', serif;
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: var(--primary-red);
+            margin-bottom: 4px;
+        }
+
+        .venue-address-text {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #3A1B10;
+            line-height: 1.5;
         }
 
         /* Details Cards Grid */
@@ -447,51 +618,50 @@
         }
 
         .details-card {
-            background: #FFFFFF;
-            border: 1.5px solid var(--gold-accent);
+            background: rgba(254, 241, 184, 0.35);
+            border: 1.5px solid var(--gold);
             border-radius: 12px;
             padding: 22px 18px;
             text-align: center;
-            box-shadow: 0 4px 12px rgba(11, 27, 61, 0.04);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.04);
         }
 
         .details-card h3 {
             font-family: 'Tiro Bangla', serif;
-            color: var(--navy-blue);
+            color: var(--primary-red);
             font-size: 1.35rem;
             margin-bottom: 10px;
-            border-bottom: 1px solid var(--gold-accent);
+            border-bottom: 1px solid var(--gold);
             padding-bottom: 6px;
             display: inline-block;
         }
 
         .details-card p {
             font-size: 1rem;
-            color: #3A4A5E;
+            color: #444;
             line-height: 1.6;
         }
 
         .phone-link {
             display: inline-block;
-            color: var(--navy-blue);
+            color: var(--primary-red);
             font-weight: bold;
             text-decoration: none;
             margin-top: 6px;
             font-size: 1.1rem;
-            border: 1px dashed var(--navy-blue);
+            border: 1px dashed var(--primary-red);
             padding: 4px 12px;
             border-radius: 20px;
             transition: all 0.3s ease;
         }
 
         .phone-link:hover {
-            background-color: var(--navy-blue);
-            color: var(--gold-accent);
+            background-color: var(--primary-red);
+            color: var(--gold);
         }
 
         /* Venue Location Box */
         .venue-section {
-            background: #FFFFFF;
             padding: 35px 20px;
             transition: all 0.4s ease;
         }
@@ -507,13 +677,13 @@
             align-items: center;
             justify-content: center;
             width: 80px; height: 80px;
-            background: linear-gradient(135deg, var(--navy-blue), var(--slate-grey));
-            color: var(--gold-accent);
+            background: linear-gradient(135deg, var(--primary-red), var(--deep-maroon));
+            color: var(--gold);
             border-radius: 50%;
             font-size: 2.2rem;
             text-decoration: none;
-            border: 3px solid var(--gold-accent);
-            box-shadow: 0 6px 15px rgba(11, 27, 61, 0.25);
+            border: 3px solid var(--gold);
+            box-shadow: 0 6px 15px rgba(128, 0, 0, 0.3);
             margin: 0 auto;
             transition: transform 0.3s ease;
         }
@@ -524,7 +694,7 @@
             top: 0; left: 0;
             width: 100%; height: 100%;
             border-radius: 50%;
-            border: 2px solid var(--navy-blue);
+            border: 2px solid var(--primary-red);
             animation: pulseWave 2s infinite;
             z-index: -1;
         }
@@ -536,7 +706,7 @@
 
         .click-text {
             font-weight: bold;
-            color: var(--navy-blue);
+            color: var(--primary-red);
             margin-top: 10px;
             font-size: 1rem;
         }
@@ -556,7 +726,7 @@
         .section-title {
             font-family: 'Tiro Bangla', serif;
             font-size: 2rem;
-            color: var(--navy-blue);
+            color: var(--primary-red);
             margin: 25px 0 12px 0;
             font-weight: 700;
         }
@@ -564,42 +734,57 @@
         footer {
             margin-top: 40px;
             font-size: 1rem;
-            color: var(--navy-blue);
-            padding-bottom: 20px;
+            color: var(--primary-red);
+            padding: 0 65px 20px 65px; /* Added clearance for corner kolkas */
+            position: relative;
+            z-index: 5;
+        }
+
+        footer p {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         @media (max-width: 600px) {
             .page-border { padding: 15px 8px; margin: 5px; border-width: 6px; }
             .auspicious-symbol { font-size: 1.35rem; }
-            .alpona-corner { width: 35px; height: 35px; }
             .aligned-card { width: 100%; }
             .bilingual-invitation, .mantra, .event-card-single, .venue-section { padding: 18px 12px; }
+            .scratch-3block-grid { gap: 6px; }
+            .scratch-box { height: 48px; }
+            .scratch-val { font-size: 1rem; }
+            .scratch-lbl { font-size: 0.6rem; }
+            .kolka-corner-svg { width: 68px; height: 68px; }
+            footer { padding: 0 48px 18px 48px; font-size: 0.92rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- ---------------- FLOATING PEARL CARD TAP TO OPEN ENTRANCE SCREEN ---------------- -->
+    <!-- ---------------- TAP TO OPEN ENVELOPE SCREEN (UNTOUCHED) ---------------- -->
     <div class="welcome-overlay" id="welcomeOverlay">
         
-        <!-- Center Floating Pearl Card Frame -->
-        <div class="floating-card-frame">
-            <!-- Amontron (Bengali) and Invitation (English) Words -->
+        <!-- Full-Screen Top Flap -->
+        <div class="fullscreen-top-flap"></div>
+
+        <!-- Full-Screen Bottom Pocket Flaps -->
+        <div class="fullscreen-bottom-pocket"></div>
+
+        <!-- Center Interactive Content -->
+        <div class="envelope-center-content">
             <div class="bengali-amontron-title">আমন্ত্রণ</div>
             <div class="english-invitation-subtitle">Invitation</div>
             <div class="tap-reveal-title">Tap to Reveal</div>
 
-            <!-- Wax Seal Stamp -->
             <div class="wax-seal">
                 <i class="fa-solid fa-brands fa-pagelines prajapati-icon" title="শ্রী শ্রী প্রজাপতয়ে নমঃ"></i>
             </div>
 
-            <!-- Overlay Couple Title -->
             <div class="overlay-invitation-text">
                 <div style="font-family: 'Tiro Bangla', serif; font-size: 1.8rem; font-weight: bold; margin-bottom: 2px;">
                     দ্বীপ ও রূপশ্রী
                 </div>
-                <div style="font-family: 'Great Vibes', cursive; font-size: 2rem; color: #2C3E60;">
+                <div style="font-family: 'Great Vibes', cursive; font-size: 2rem; color: #6B321D;">
                     (Dwip & Rupashree)
                 </div>
             </div>
@@ -617,18 +802,69 @@
 
     <div class="page-border">
         
+        <!-- AUTHENTIC HIGH-DEFINITION VECTOR BENGALI KALKA CORNER MOTIFS -->
+        <svg class="kolka-corner-svg top-left-kolka" viewBox="0 0 120 120">
+            <path d="M0,0 L120,0 C90,10 65,30 50,60 C40,80 30,105 0,120 Z" fill="var(--primary-red)"/>
+            <path d="M5,5 Q70,12 105,5 Q80,40 20,105 Q12,60 5,5 Z" fill="var(--deep-maroon)"/>
+            <path d="M12,12 Q55,20 85,12 Q65,35 18,85 Z" fill="none" stroke="var(--gold)" stroke-width="2.5"/>
+            <path d="M22,22 C48,28 62,22 72,18 C52,38 32,52 18,72 Z" fill="var(--primary-red)"/>
+            <circle cx="30" cy="30" r="6" fill="var(--gold)"/>
+            <circle cx="54" cy="24" r="5" fill="var(--gold)"/>
+            <circle cx="24" cy="54" r="5" fill="var(--gold)"/>
+            <circle cx="78" cy="22" r="4.5" fill="var(--light-gold)"/>
+            <circle cx="22" cy="78" r="4.5" fill="var(--light-gold)"/>
+            <circle cx="94" cy="16" r="3.5" fill="#FFFFFF"/>
+            <circle cx="16" cy="94" r="3.5" fill="#FFFFFF"/>
+        </svg>
+
+        <svg class="kolka-corner-svg top-right-kolka" viewBox="0 0 120 120">
+            <path d="M0,0 L120,0 C90,10 65,30 50,60 C40,80 30,105 0,120 Z" fill="var(--primary-red)"/>
+            <path d="M5,5 Q70,12 105,5 Q80,40 20,105 Q12,60 5,5 Z" fill="var(--deep-maroon)"/>
+            <path d="M12,12 Q55,20 85,12 Q65,35 18,85 Z" fill="none" stroke="var(--gold)" stroke-width="2.5"/>
+            <path d="M22,22 C48,28 62,22 72,18 C52,38 32,52 18,72 Z" fill="var(--primary-red)"/>
+            <circle cx="30" cy="30" r="6" fill="var(--gold)"/>
+            <circle cx="54" cy="24" r="5" fill="var(--gold)"/>
+            <circle cx="24" cy="54" r="5" fill="var(--gold)"/>
+            <circle cx="78" cy="22" r="4.5" fill="var(--light-gold)"/>
+            <circle cx="22" cy="78" r="4.5" fill="var(--light-gold)"/>
+            <circle cx="94" cy="16" r="3.5" fill="#FFFFFF"/>
+            <circle cx="16" cy="94" r="3.5" fill="#FFFFFF"/>
+        </svg>
+
+        <svg class="kolka-corner-svg bottom-left-kolka" viewBox="0 0 120 120">
+            <path d="M0,0 L120,0 C90,10 65,30 50,60 C40,80 30,105 0,120 Z" fill="var(--primary-red)"/>
+            <path d="M5,5 Q70,12 105,5 Q80,40 20,105 Q12,60 5,5 Z" fill="var(--deep-maroon)"/>
+            <path d="M12,12 Q55,20 85,12 Q65,35 18,85 Z" fill="none" stroke="var(--gold)" stroke-width="2.5"/>
+            <path d="M22,22 C48,28 62,22 72,18 C52,38 32,52 18,72 Z" fill="var(--primary-red)"/>
+            <circle cx="30" cy="30" r="6" fill="var(--gold)"/>
+            <circle cx="54" cy="24" r="5" fill="var(--gold)"/>
+            <circle cx="24" cy="54" r="5" fill="var(--gold)"/>
+            <circle cx="78" cy="22" r="4.5" fill="var(--light-gold)"/>
+            <circle cx="22" cy="78" r="4.5" fill="var(--light-gold)"/>
+            <circle cx="94" cy="16" r="3.5" fill="#FFFFFF"/>
+            <circle cx="16" cy="94" r="3.5" fill="#FFFFFF"/>
+        </svg>
+
+        <svg class="kolka-corner-svg bottom-right-kolka" viewBox="0 0 120 120">
+            <path d="M0,0 L120,0 C90,10 65,30 50,60 C40,80 30,105 0,120 Z" fill="var(--primary-red)"/>
+            <path d="M5,5 Q70,12 105,5 Q80,40 20,105 Q12,60 5,5 Z" fill="var(--deep-maroon)"/>
+            <path d="M12,12 Q55,20 85,12 Q65,35 18,85 Z" fill="none" stroke="var(--gold)" stroke-width="2.5"/>
+            <path d="M22,22 C48,28 62,22 72,18 C52,38 32,52 18,72 Z" fill="var(--primary-red)"/>
+            <circle cx="30" cy="30" r="6" fill="var(--gold)"/>
+            <circle cx="54" cy="24" r="5" fill="var(--gold)"/>
+            <circle cx="24" cy="54" r="5" fill="var(--gold)"/>
+            <circle cx="78" cy="22" r="4.5" fill="var(--light-gold)"/>
+            <circle cx="22" cy="78" r="4.5" fill="var(--light-gold)"/>
+            <circle cx="94" cy="16" r="3.5" fill="#FFFFFF"/>
+            <circle cx="16" cy="94" r="3.5" fill="#FFFFFF"/>
+        </svg>
+
         <!-- Rotating Mandala Background Art -->
         <svg class="mandala-bg" viewBox="0 0 100 100">
             <circle cx="50" cy="50" r="45" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3,3"/>
             <circle cx="50" cy="50" r="35" fill="none" stroke="currentColor" stroke-width="1"/>
             <path d="M50,5 L50,95 M5,50 L95,50 M18,18 L82,82 M18,82 L82,18" stroke="currentColor" stroke-width="0.5"/>
         </svg>
-
-        <!-- Alpona Corner Ornaments -->
-        <svg class="alpona-corner top-left" viewBox="0 0 100 100"><path d="M0,0 L100,0 C50,0 0,50 0,100 Z M30,10 C50,20 20,50 10,30 Z"/></svg>
-        <svg class="alpona-corner top-right" viewBox="0 0 100 100"><path d="M0,0 L100,0 C50,0 0,50 0,100 Z M30,10 C50,20 20,50 10,30 Z"/></svg>
-        <svg class="alpona-corner bottom-left" viewBox="0 0 100 100"><path d="M0,0 L100,0 C50,0 0,50 0,100 Z M30,10 C50,20 20,50 10,30 Z"/></svg>
-        <svg class="alpona-corner bottom-right" viewBox="0 0 100 100"><path d="M0,0 L100,0 C50,0 0,50 0,100 Z M30,10 C50,20 20,50 10,30 Z"/></svg>
 
         <div class="container">
 
@@ -637,7 +873,14 @@
                     ॐ || শ্রী শ্রী প্রজাপতয়ে নমঃ ||
                 </div>
                 
-                <p class="sub-heading reveal">শুভ প্রীতিভোজ ও বৌ ভাত</p>
+                <p class="sub-heading reveal">শুভ বিবাহ বন্ধনে</p>
+
+                <!-- Animated Bride & Groom Silhouette Motifs -->
+                <div class="couple-animation-box reveal">
+                    <i class="fa-solid fa-user-tie bride-groom-icon groom-icon" title="Groom"></i>
+                    <i class="fa-solid fa-heart heart-center"></i>
+                    <i class="fa-solid fa-user-ninja bride-groom-icon bride-icon" style="transform: scaleX(-1);" title="Bride"></i>
+                </div>
 
                 <h1 class="couple-names reveal">Dwip & Rupashree</h1>
 
@@ -650,13 +893,24 @@
                 <!-- Bilingual Invitation Card (Aligned Card) -->
                 <div class="bilingual-invitation aligned-card reveal">
                     <p class="invitation-bn">
-                        আমাদের বৌ ভাত ও প্রীতিভোজ উপলক্ষে আপনাকে ও আপনার পরিবারকে সপরিবারে উপস্থিত থেকে আমাদের নতুন পথচলায় আশীর্বাদ করার জন্য বিনীত নিমন্ত্রণ জানাচ্ছি।
+                        আমাদের শুভ বিবাহ উপলক্ষে আপনাকে ও আপনার পরিবারকে সপরিবারে উপস্থিত থেকে আমাদের নতুন পথচলায় আশীর্বাদ করার জন্য বিনীত নিমন্ত্রণ জানাচ্ছি।
                     </p>
                     <p class="invitation-en">
-                        We cordially invite you and your family to join us at the grand reception dinner celebrating the union of <strong>Dwip</strong> & <strong>Rupashree</strong>.
+                        We cordially invite you and your family to bless us on the auspicious occasion of the wedding ceremony of <strong>Dwip</strong> & <strong>Rupashree</strong>.
                     </p>
                 </div>
             </header>
+
+            <!-- Countdown Timer -->
+            <div class="countdown-container reveal">
+                <h3 style="font-size: 1.3rem; font-weight: 600;">Wedding Countdown</h3>
+                <div class="timer" id="countdown">
+                    <div class="timer-box"><span id="days">00</span><label>Days</label></div>
+                    <div class="timer-box"><span id="hours">00</span><label>Hours</label></div>
+                    <div class="timer-box"><span id="minutes">00</span><label>Minutes</label></div>
+                    <div class="timer-box"><span id="seconds">00</span><label>Seconds</label></div>
+                </div>
+            </div>
 
             <!-- SYMMETRICAL ALPONA SEPARATOR -->
             <svg class="alpona-separator reveal" viewBox="0 0 200 24">
@@ -665,54 +919,79 @@
 
             <h2 class="section-title reveal">অনুষ্ঠানসূচী (Schedule)</h2>
             
-            <!-- Reception Event Card (Aligned Card with Date & Bold Venue Address) -->
-            <div class="event-card-single aligned-card reveal">
-                <div class="event-icon"><i class="fa-regular fa-calendar-check"></i></div>
-                <div class="event-title">বৌ ভাত ও প্রীতিভোজ (Reception)</div>
+            <!-- Wedding Event Card with 3 Scratch Blocks & Address -->
+            <div class="event-card-single aligned-card reveal" style="border-color: var(--primary-red);">
+                <div class="event-icon"><i class="fa-solid fa-gem"></i></div>
+                <div class="event-title">শুভ বিবাহ (Wedding Ceremony)</div>
+                <div style="font-size: 0.9rem; color: var(--terracotta); margin-bottom: 6px;">✨ Scratch below to reveal the date</div>
                 
-                <!-- CLEAN DISPLAYED DATE BADGE -->
-                <div class="date-display-badge">
-                    <i class="fa-regular fa-calendar-days"></i> Sun, 31st Jan 2027
-                </div>
+                <!-- 3-BLOCK SCRATCH CONTAINER -->
+                <div class="scratch-3block-grid">
+                    <!-- Block 1: Date -->
+                    <div class="scratch-box">
+                        <div class="scratch-text-content">
+                            <span class="scratch-val">29th</span>
+                            <span class="scratch-lbl">Date</span>
+                        </div>
+                        <canvas class="scratch-canvas" id="scratchBlock1"></canvas>
+                    </div>
 
-                <div class="event-time" style="margin-top: 6px;"><i class="fa-regular fa-clock" style="color: var(--navy-blue);"></i> Evening 7:30 PM Onwards</div>
-                
-                <!-- INTEGRATED VENUE NAME & BOLD ADDRESS BLOCK -->
-                <div class="venue-address-block">
-                    <div class="venue-name-title"><i class="fa-solid fa-building-columns" style="color: var(--gold-accent); margin-right: 4px;"></i> স্থান: তনুশ্রী ভবন (Tanushree Bhavan)</div>
-                    <div class="venue-address-text">
-                        বালেটিকুরী শুঁড়কিমিল (রয়্যাল এনফিল্ড শোরুমের বিপরীতে)<br>
-                        Balitikuri Surkimill, Opp. Royal Enfield Showroom<br>
-                        Howrah - 711113
+                    <!-- Block 2: Month -->
+                    <div class="scratch-box">
+                        <div class="scratch-text-content">
+                            <span class="scratch-val">January</span>
+                            <span class="scratch-lbl">Month</span>
+                        </div>
+                        <canvas class="scratch-canvas" id="scratchBlock2"></canvas>
+                    </div>
+
+                    <!-- Block 3: Year -->
+                    <div class="scratch-box">
+                        <div class="scratch-text-content">
+                            <span class="scratch-val">2027</span>
+                            <span class="scratch-lbl">Year</span>
+                        </div>
+                        <canvas class="scratch-canvas" id="scratchBlock3"></canvas>
                     </div>
                 </div>
 
-                <p style="margin-top: 10px; font-size: 0.9rem; color: #666;">A grand evening of feast, music, and joyful celebration with family & friends.</p>
+                <div class="event-time" style="margin-top: 10px;"><i class="fa-regular fa-clock" style="color: var(--primary-red);"></i> Evening 7:00 PM</div>
+                
+                <!-- INTEGRATED WEDDING VENUE NAME & ADDRESS BLOCK -->
+                <div class="venue-address-block">
+                    <div class="venue-name-title"><i class="fa-solid fa-building-columns" style="color: var(--gold); margin-right: 4px;"></i> স্থান: সেলেব্রেশন হল (Celebration Hall)</div>
+                    <div class="venue-address-text">
+                        ৭৪২/৫, শরৎ চ্যাটার্জি রোড, চ্যাটার্জিহাট থানা, হাওড়া, পশ্চিমবঙ্গ ৭১১১০৪<br>
+                        742/5, Sarat Chatterjee Rd, Chatterjeehat PS, Howrah, West Bengal 711104
+                    </div>
+                </div>
+
+                <p style="margin-top: 10px; font-size: 0.9rem; color: #666;">Saat Paake Bandha, Subho Dristi, Sindoor Daan & Lagna Mahurat.</p>
             </div>
 
-            <!-- Reception Details Grid -->
+            <!-- Wedding Details Grid -->
             <div class="details-grid reveal">
                 <div class="details-card">
                     <h3><i class="fa-solid fa-heart" style="margin-right: 5px;"></i> নিমন্ত্রণ বার্তা</h3>
-                    <p>আমাদের জীবনের এই বিশেষ ক্ষণে আপনার উপস্থিতি ও আশীর্বাদ আমাদের পরম কাম্য। সপরিবারে অবশ্যই আসবেন।</p>
+                    <p>আমাদের জীবনের এই শুভ লগ্নে আপনার উপস্থিতি ও আন্তরিক আশীর্বাদ আমাদের পরম কাম্য। সপরিবারে অবশ্যই আসবেন।</p>
                 </div>
 
                 <div class="details-card">
                     <h3><i class="fa-solid fa-phone" style="margin-right: 5px;"></i> যোগাযোগ</h3>
                     <p>যেকোনো স্থাননির্দেশনা বা সহায়তার জন্য যোগাযোগ করুন:</p>
-                    <a href="tel:9804963554" class="phone-link"><i class="fa-solid fa-phone-volume"></i> 9804963554</a>
+                    <a href="tel:9903385973" class="phone-link"><i class="fa-solid fa-phone-volume"></i> 9903385973</a>
                 </div>
             </div>
 
-            <!-- Dedicated Reception Venue Location Section (Aligned Card) -->
+            <!-- Dedicated Wedding Venue Location Section (Aligned Card) -->
             <div class="venue-section aligned-card reveal">
-                <h2 style="font-family: 'Tiro Bangla', serif; color: var(--navy-blue); font-size: 1.8rem; margin-bottom: 8px;">
-                    প্রীতিভোজ বাসর (Reception Venue Location)
+                <h2 style="font-family: 'Tiro Bangla', serif; color: var(--primary-red); font-size: 1.8rem; margin-bottom: 8px;">
+                    বিবাহ বাসর (Wedding Venue Location)
                 </h2>
                 <p style="color: #555; margin-bottom: 10px;">Tap the icon below to open the location directly in Google Maps:</p>
 
                 <div class="location-pulse-box">
-                    <a href="https://maps.app.goo.gl/TbTYBpvCFkq9Cfxu9" target="_blank" class="location-icon-btn" title="Open Reception Venue on Google Maps">
+                    <a href="https://maps.app.goo.gl/cVCMPEVQpXpTLo2F8" target="_blank" class="location-icon-btn" title="Open Wedding Venue on Google Maps">
                         <i class="fa-solid fa-location-dot"></i>
                     </a>
                 </div>
@@ -743,7 +1022,7 @@
         // Instant Trigger Function on Tap
         function triggerAudioPlayback() {
             if (audio) {
-                audio.currentTime = 0; // Reset to start instantly
+                audio.currentTime = 0;
                 const playPromise = audio.play();
                 if (playPromise !== undefined) {
                     playPromise.catch(err => console.log("Audio play allowed on user tap:", err));
@@ -752,18 +1031,63 @@
         }
 
         function openInvitation() {
-            triggerAudioPlayback(); // Play immediately on tap
+            triggerAudioPlayback();
             
             overlay.classList.add('open');
             setTimeout(() => {
                 overlay.classList.add('hidden');
                 checkScrollReveal();
-            }, 600);
+            }, 800);
         }
 
-        // Attach listeners for immediate touch response
+        // Touch and click listeners for immediate audio
         overlay.addEventListener('touchstart', triggerAudioPlayback, { passive: true, once: true });
         overlay.addEventListener('click', openInvitation);
+
+        // Multi-Block Scratch-Off Canvas Logic
+        function initScratchCanvas(canvasId, hintText) {
+            const canvas = document.getElementById(canvasId);
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const width = canvas.width = canvas.offsetWidth;
+            const height = canvas.height = canvas.offsetHeight;
+
+            ctx.fillStyle = '#D4AF37';
+            ctx.fillRect(0, 0, width, height);
+
+            ctx.fillStyle = '#800000';
+            ctx.font = 'bold 11px sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText(hintText, width / 2, height / 2 + 4);
+
+            let isDrawing = false;
+
+            function scratch(e) {
+                if (!isDrawing) return;
+                const rect = canvas.getBoundingClientRect();
+                const x = (e.clientX || (e.touches && e.touches[0].clientX)) - rect.left;
+                const y = (e.clientY || (e.touches && e.touches[0].clientY)) - rect.top;
+
+                ctx.globalCompositeOperation = 'destination-out';
+                ctx.beginPath();
+                ctx.arc(x, y, 16, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            canvas.addEventListener('mousedown', () => isDrawing = true);
+            canvas.addEventListener('mouseup', () => isDrawing = false);
+            canvas.addEventListener('mousemove', scratch);
+
+            canvas.addEventListener('touchstart', (e) => { isDrawing = true; scratch(e); });
+            canvas.addEventListener('touchend', () => isDrawing = false);
+            canvas.addEventListener('touchmove', scratch);
+        }
+
+        window.addEventListener('load', () => {
+            initScratchCanvas('scratchBlock1', '✨ Date');
+            initScratchCanvas('scratchBlock2', '✨ Month');
+            initScratchCanvas('scratchBlock3', '✨ Year');
+        });
 
         // Scroll Reveal Observer
         function checkScrollReveal() {
@@ -791,6 +1115,24 @@
 
             setTimeout(() => sparkle.remove(), 800);
         });
+
+        // Target Wedding Date (January 29, 2027)
+        const weddingDate = new Date("January 29, 2027 19:00:00").getTime();
+
+        setInterval(() => {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days < 10 ? '0' + days : days;
+            document.getElementById("hours").innerText = hours < 10 ? '0' + hours : hours;
+            document.getElementById("minutes").innerText = minutes < 10 ? '0' + minutes : minutes;
+            document.getElementById("seconds").innerText = seconds < 10 ? '0' + seconds : seconds;
+        }, 1000);
 
         // Falling Flower Petals
         const petalsContainer = document.getElementById('petals');
