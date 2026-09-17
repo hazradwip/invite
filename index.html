@@ -3127,12 +3127,21 @@ body::before {
         // Audio playback stays tied to the user's tap.
         function triggerAudioPlayback() {
             if (audio) {
-                // Do not seek/reset on tap; seeking can cause a small main-thread
-                // stall exactly when the entrance animation starts.
+                // Start the audio silently from the user's tap so the browser's
+                // autoplay permission is granted, then make it audible when the
+                // entrance animation has finished.
+                audio.volume = 0;
                 const playPromise = audio.play();
+
                 if (playPromise !== undefined) {
                     playPromise.catch(() => {});
                 }
+
+                setTimeout(() => {
+                    if (audio && invitationOpened) {
+                        audio.volume = 1;
+                    }
+                }, 720);
             }
         }
 
