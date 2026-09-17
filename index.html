@@ -25,14 +25,14 @@
 
     <style>
         :root {
-            --light-grey-bg: #EBF0F5;
-            --soft-grey: #F4F7FA;
+            --light-grey-bg: #F3E7ED;
+            --soft-grey: #FBF5F8;
             --card-white: #FFFFFF;
-            --navy-blue: #0B1B3D;
-            --slate-grey: #2C3E60;
+            --navy-blue: #660033;
+            --slate-grey: #7A3A5A;
             --gold-accent: #C59B27;
             --light-gold: #FDF1B8;
-            --text-dark: #0A1428;
+            --text-dark: #2A0015;
         }
 
         * {
@@ -43,14 +43,14 @@
 
         body {
             margin: 0;
-            background-color: #DCE4EC;
+            background-color: #F0E1E8;
             background-image:
                 radial-gradient(circle at 10px 10px, rgba(197,155,39,.34) 2px, transparent 2.8px),
-                radial-gradient(circle at 30px 30px, rgba(11,27,61,.18) 1.8px, transparent 2.5px),
-                repeating-linear-gradient(0deg, rgba(11,27,61,.075) 0px, rgba(11,27,61,.075) 1px, transparent 1px, transparent 7px),
+                radial-gradient(circle at 30px 30px, rgba(102,0,51,.18) 1.8px, transparent 2.5px),
+                repeating-linear-gradient(0deg, rgba(102,0,51,.075) 0px, rgba(102,0,51,.075) 1px, transparent 1px, transparent 7px),
                 repeating-linear-gradient(90deg, rgba(197,155,39,.085) 0px, rgba(197,155,39,.085) 1px, transparent 1px, transparent 9px),
                 repeating-linear-gradient(45deg, transparent 0px, transparent 12px, rgba(255,255,255,.30) 12px, rgba(255,255,255,.30) 13px),
-                repeating-linear-gradient(-45deg, transparent 0px, transparent 18px, rgba(11,27,61,.055) 18px, rgba(11,27,61,.055) 19px);
+                repeating-linear-gradient(-45deg, transparent 0px, transparent 18px, rgba(102,0,51,.055) 18px, rgba(102,0,51,.055) 19px);
             background-size:
                 40px 40px,
                 60px 60px,
@@ -67,17 +67,17 @@
         /* ---------------- VISIBLE MAIN PAGE BACKGROUND TEXTURE ---------------- */
 
         body {
-            background-color: #E7EDF3;
+            background-color: #F5EAF0;
             background-image:
                 radial-gradient(circle at 50% 50%, rgba(255,255,255,0.42) 0 2px, transparent 2.8px),
                 radial-gradient(circle at 15% 18%, rgba(197,155,39,0.22) 0 2px, transparent 3px),
                 radial-gradient(circle at 85% 25%, rgba(197,155,39,0.18) 0 2px, transparent 3px),
-                radial-gradient(circle at 20% 82%, rgba(11,27,61,0.12) 0 1.8px, transparent 3px),
-                radial-gradient(circle at 80% 78%, rgba(11,27,61,0.10) 0 1.8px, transparent 3px),
+                radial-gradient(circle at 20% 82%, rgba(102,0,51,0.12) 0 1.8px, transparent 3px),
+                radial-gradient(circle at 80% 78%, rgba(102,0,51,0.10) 0 1.8px, transparent 3px),
                 repeating-linear-gradient(
                     45deg,
-                    rgba(11,27,61,0.035) 0,
-                    rgba(11,27,61,0.035) 1px,
+                    rgba(102,0,51,0.035) 0,
+                    rgba(102,0,51,0.035) 1px,
                     transparent 1px,
                     transparent 9px
                 ),
@@ -94,7 +94,7 @@
                     transparent 28%,
                     rgba(255,255,255,0.18) 50%,
                     transparent 72%,
-                    rgba(11,27,61,0.055)
+                    rgba(102,0,51,0.055)
                 );
             background-size:
                 32px 32px,
@@ -117,9 +117,9 @@
             opacity: .72;
             background-image:
                 radial-gradient(circle, rgba(197,155,39,.42) 0 2px, transparent 2.5px),
-                radial-gradient(circle, rgba(11,27,61,.22) 0 1.5px, transparent 2px),
+                radial-gradient(circle, rgba(102,0,51,.22) 0 1.5px, transparent 2px),
                 repeating-linear-gradient(135deg, transparent 0 22px, rgba(197,155,39,.10) 22px 24px, transparent 24px 46px),
-                repeating-linear-gradient(45deg, transparent 0 31px, rgba(11,27,61,.075) 31px 33px, transparent 33px 62px);
+                repeating-linear-gradient(45deg, transparent 0 31px, rgba(102,0,51,.075) 31px 33px, transparent 33px 62px);
             background-size: 52px 52px, 76px 76px, 92px 92px, 124px 124px;
             mix-blend-mode: multiply;
         }
@@ -146,7 +146,7 @@
             background-color: rgba(244,247,250,0.84);
             background-image:
                 radial-gradient(circle at 10% 10%, rgba(197,155,39,0.07) 0 1.5px, transparent 2.5px),
-                radial-gradient(circle at 90% 90%, rgba(11,27,61,0.045) 0 1.5px, transparent 2.5px);
+                radial-gradient(circle at 90% 90%, rgba(102,0,51,0.045) 0 1.5px, transparent 2.5px);
             background-size: 38px 38px, 44px 44px;
         }
 
@@ -158,7 +158,7 @@
             width: 100vw;
             height: 100vh;
             background-color: rgba(235, 240, 245, 0.98);
-            background-image: radial-gradient(circle at center, #FFFFFF 0%, #DCE4EC 100%);
+            background-image: radial-gradient(circle at center, #FFFFFF 0%, #F0E1E8 100%);
             z-index: 9999;
             display: flex;
             align-items: center;
@@ -230,7 +230,7 @@
             position: relative;
             width: clamp(80px, 20vw, 100px);
             height: clamp(80px, 20vw, 100px);
-            background: radial-gradient(circle at 32% 28%, #1B3566 0%, #0B1B3D 60%, #040A1A 90%);
+            background: radial-gradient(circle at 32% 28%, #8A1F52 0%, #660033 60%, #35001A 90%);
             border-radius: 48% 52% 50% 50% / 50% 52% 48% 50%;
             display: flex;
             align-items: center;
@@ -262,7 +262,7 @@
         }
 
         @keyframes pulseSeal {
-            0% { transform: scale(1); filter: drop-shadow(0 0 5px rgba(11,27,61,0.2)); }
+            0% { transform: scale(1); filter: drop-shadow(0 0 5px rgba(102,0,51,0.2)); }
             100% { transform: scale(1.06); filter: drop-shadow(0 0 15px rgba(197, 155, 39, 0.4)); }
         }
 
@@ -306,7 +306,7 @@
         .venue-address-text {
             font-size: 0.95rem;
             font-weight: 700;
-            color: #1A2840;
+            color: #4A2338;
             line-height: 1.5;
         }
 
@@ -329,7 +329,7 @@
         }
 
         .petal:nth-child(2n) {
-            background: #8A9CB3;
+            background: #B38A9D;
             border-radius: 0 150% 0 150%;
         }
 
@@ -471,7 +471,7 @@
             font-size: 1.18rem;
             padding: 18px 20px;
             line-height: 1.75;
-            background: #FAFAF7;
+            background: #FCF8F5;
         }
 
         /* Bilingual Invitation Card */
@@ -491,7 +491,7 @@
 
         .invitation-en {
             font-size: 1.02rem;
-            color: #3A4A5E;
+            color: #5B3A4B;
             line-height: 1.6;
             border-top: 1px dashed var(--gold-accent);
             padding-top: 12px;
@@ -565,7 +565,7 @@
 
         .details-card p {
             font-size: 1rem;
-            color: #3A4A5E;
+            color: #5B3A4B;
             line-height: 1.6;
         }
 
@@ -673,8 +673,8 @@
             background-color: #FFFFFF;
             background-image:
                 radial-gradient(circle at 12% 18%, rgba(197,155,39,0.075) 0 1px, transparent 1.6px),
-                radial-gradient(circle at 88% 82%, rgba(11,27,61,0.045) 0 1px, transparent 1.6px),
-                linear-gradient(135deg, rgba(197,155,39,0.045), transparent 34%, rgba(11,27,61,0.025) 70%, transparent);
+                radial-gradient(circle at 88% 82%, rgba(102,0,51,0.045) 0 1px, transparent 1.6px),
+                linear-gradient(135deg, rgba(197,155,39,0.045), transparent 34%, rgba(102,0,51,0.025) 70%, transparent);
             background-size: 21px 21px, 27px 27px, 100% 100%;
             overflow: hidden;
         }
@@ -735,7 +735,7 @@
             background-color: #FFFFFF;
             background-image:
                 radial-gradient(circle at 18% 22%, rgba(197,155,39,0.16) 0 1.5px, transparent 2px),
-                radial-gradient(circle at 78% 68%, rgba(11,27,61,0.09) 0 1.2px, transparent 2px),
+                radial-gradient(circle at 78% 68%, rgba(102,0,51,0.09) 0 1.2px, transparent 2px),
                 repeating-linear-gradient(
                     0deg,
                     rgba(197,155,39,0.025) 0,
@@ -745,12 +745,12 @@
                 ),
                 repeating-linear-gradient(
                     90deg,
-                    rgba(11,27,61,0.018) 0,
-                    rgba(11,27,61,0.018) 1px,
+                    rgba(102,0,51,0.018) 0,
+                    rgba(102,0,51,0.018) 1px,
                     transparent 1px,
                     transparent 7px
                 ),
-                linear-gradient(135deg, rgba(197,155,39,0.07), transparent 38%, rgba(11,27,61,0.045) 72%, transparent);
+                linear-gradient(135deg, rgba(197,155,39,0.07), transparent 38%, rgba(102,0,51,0.045) 72%, transparent);
             background-size: 24px 24px, 31px 31px, auto, auto, 100% 100%;
         }
 
@@ -760,7 +760,7 @@
             background-color: #FFFFFF;
             background-image:
                 radial-gradient(circle at 10% 18%, rgba(197,155,39,0.12) 0 1.4px, transparent 2px),
-                radial-gradient(circle at 88% 76%, rgba(11,27,61,0.075) 0 1.2px, transparent 2px),
+                radial-gradient(circle at 88% 76%, rgba(102,0,51,0.075) 0 1.2px, transparent 2px),
                 repeating-linear-gradient(
                     45deg,
                     rgba(197,155,39,0.018) 0,
@@ -770,21 +770,21 @@
                 ),
                 repeating-linear-gradient(
                     -45deg,
-                    rgba(11,27,61,0.012) 0,
-                    rgba(11,27,61,0.012) 1px,
+                    rgba(102,0,51,0.012) 0,
+                    rgba(102,0,51,0.012) 1px,
                     transparent 1px,
                     transparent 9px
                 ),
-                linear-gradient(135deg, rgba(197,155,39,0.045), transparent 40%, rgba(11,27,61,0.028) 75%, transparent);
+                linear-gradient(135deg, rgba(197,155,39,0.045), transparent 40%, rgba(102,0,51,0.028) 75%, transparent);
             background-size: 26px 26px, 34px 34px, auto, auto, 100% 100%;
         }
 
         /* Stronger handmade texture for the mantra card */
         .mantra {
-            background-color: #FAFAF7;
+            background-color: #FCF8F5;
             background-image:
                 radial-gradient(circle at 15% 20%, rgba(197,155,39,0.16) 0 1.5px, transparent 2px),
-                radial-gradient(circle at 82% 72%, rgba(11,27,61,0.07) 0 1.2px, transparent 2px),
+                radial-gradient(circle at 82% 72%, rgba(102,0,51,0.07) 0 1.2px, transparent 2px),
                 repeating-linear-gradient(
                     0deg,
                     rgba(197,155,39,0.025) 0,
@@ -810,14 +810,14 @@
                 ),
                 repeating-linear-gradient(
                     90deg,
-                    rgba(11,27,61,0.018) 0,
-                    rgba(11,27,61,0.018) 1px,
+                    rgba(102,0,51,0.018) 0,
+                    rgba(102,0,51,0.018) 1px,
                     transparent 1px,
                     transparent 6px
                 ),
                 radial-gradient(circle at 18% 20%, rgba(197,155,39,0.10) 0 1.3px, transparent 2px),
-                radial-gradient(circle at 82% 78%, rgba(11,27,61,0.06) 0 1.1px, transparent 2px),
-                linear-gradient(135deg, rgba(197,155,39,0.04), transparent 45%, rgba(11,27,61,0.025));
+                radial-gradient(circle at 82% 78%, rgba(102,0,51,0.06) 0 1.1px, transparent 2px),
+                linear-gradient(135deg, rgba(197,155,39,0.04), transparent 45%, rgba(102,0,51,0.025));
             background-size: auto, auto, 27px 27px, 33px 33px, 100% 100%;
         }
 
@@ -827,7 +827,7 @@
         .floating-card-frame {
             box-shadow:
                 inset 0 0 32px rgba(197,155,39,0.045),
-                0 5px 16px rgba(11,27,61,0.06);
+                0 5px 16px rgba(102,0,51,0.06);
         }
 
         /* ---------------- ENHANCED WEDDING DECORATIONS ---------------- */
@@ -1080,8 +1080,8 @@
             background-color: #FFFFFF;
             background-image:
                 radial-gradient(circle at 15% 20%, rgba(197,155,39,0.055) 0 1px, transparent 1.5px),
-                radial-gradient(circle at 85% 75%, rgba(11,27,61,0.035) 0 1px, transparent 1.5px),
-                linear-gradient(135deg, rgba(197,155,39,0.025), transparent 35%, rgba(11,27,61,0.018) 70%, transparent);
+                radial-gradient(circle at 85% 75%, rgba(102,0,51,0.035) 0 1px, transparent 1.5px),
+                linear-gradient(135deg, rgba(197,155,39,0.025), transparent 35%, rgba(102,0,51,0.018) 70%, transparent);
             background-size: 22px 22px, 29px 29px, 100% 100%;
         }
 
@@ -1101,8 +1101,8 @@
             background-image:
                 repeating-linear-gradient(
                     0deg,
-                    rgba(11,27,61,0.012) 0,
-                    rgba(11,27,61,0.012) 1px,
+                    rgba(102,0,51,0.012) 0,
+                    rgba(102,0,51,0.012) 1px,
                     transparent 1px,
                     transparent 4px
                 ),
@@ -1125,10 +1125,10 @@
 
         /* Mantra gets a warmer handmade-paper texture */
         .mantra {
-            background-color: #FAFAF7;
+            background-color: #FCF8F5;
             background-image:
                 radial-gradient(circle at 20% 25%, rgba(197,155,39,0.08) 0 1px, transparent 1.5px),
-                radial-gradient(circle at 75% 70%, rgba(11,27,61,0.035) 0 1px, transparent 1.5px),
+                radial-gradient(circle at 75% 70%, rgba(102,0,51,0.035) 0 1px, transparent 1.5px),
                 linear-gradient(135deg, rgba(197,155,39,0.045), transparent 45%);
             background-size: 18px 18px, 25px 25px, 100% 100%;
         }
@@ -1139,7 +1139,7 @@
         .venue-section {
             background-image:
                 linear-gradient(90deg, rgba(197,155,39,0.018) 50%, transparent 50%),
-                linear-gradient(rgba(11,27,61,0.012) 50%, transparent 50%);
+                linear-gradient(rgba(102,0,51,0.012) 50%, transparent 50%);
             background-size: 6px 6px;
         }
 
@@ -1147,7 +1147,7 @@
         .details-card {
             box-shadow:
                 inset 0 0 28px rgba(197,155,39,0.035),
-                0 4px 12px rgba(11,27,61,0.04);
+                0 4px 12px rgba(102,0,51,0.04);
         }
 
         .details-card h3,
@@ -1194,7 +1194,7 @@
             background-position: 0 0, 0 0, 0 0;
             box-shadow:
                 inset 0 0 30px rgba(197,155,39,0.045),
-                0 10px 24px rgba(11,27,61,0.10);
+                0 10px 24px rgba(102,0,51,0.10);
         }
 
         @media (max-width: 600px) {
@@ -1223,8 +1223,8 @@
             background-color: rgba(244,247,250,.90);
             background-image:
                 radial-gradient(circle at 12px 12px, rgba(197,155,39,.20) 1.5px, transparent 2px),
-                radial-gradient(circle at 34px 28px, rgba(11,27,61,.11) 1.2px, transparent 1.8px),
-                repeating-linear-gradient(0deg, rgba(11,27,61,.035) 0 1px, transparent 1px 5px),
+                radial-gradient(circle at 34px 28px, rgba(102,0,51,.11) 1.2px, transparent 1.8px),
+                repeating-linear-gradient(0deg, rgba(102,0,51,.035) 0 1px, transparent 1px 5px),
                 repeating-linear-gradient(90deg, rgba(197,155,39,.045) 0 1px, transparent 1px 7px);
             background-size: 48px 48px, 64px 64px, 10px 10px, 14px 14px;
         }
@@ -1239,8 +1239,8 @@
             background:
                 radial-gradient(circle at 8% 18%, rgba(197,155,39,.16) 0 3px, transparent 4px),
                 radial-gradient(circle at 92% 26%, rgba(197,155,39,.14) 0 3px, transparent 4px),
-                radial-gradient(circle at 14% 78%, rgba(11,27,61,.10) 0 2px, transparent 3px),
-                radial-gradient(circle at 86% 82%, rgba(11,27,61,.10) 0 2px, transparent 3px);
+                radial-gradient(circle at 14% 78%, rgba(102,0,51,.10) 0 2px, transparent 3px),
+                radial-gradient(circle at 86% 82%, rgba(102,0,51,.10) 0 2px, transparent 3px);
         }
 
     
@@ -2507,7 +2507,7 @@ footer h4 {
 .petal {
     z-index: 4 !important;
     opacity: .62 !important;
-    filter: drop-shadow(0 1px 2px rgba(11,27,61,.16));
+    filter: drop-shadow(0 1px 2px rgba(102,0,51,.16));
 }
 
 /* Main readable content stays above the petals */
@@ -2541,7 +2541,7 @@ footer h4 {
    textured background on both desktop and mobile. */
 .petal:nth-child(2n) {
     opacity: .55 !important;
-    filter: drop-shadow(0 1px 2px rgba(11,27,61,.12));
+    filter: drop-shadow(0 1px 2px rgba(102,0,51,.12));
 }
 
 /* Ensure the animation remains visible on small screens */
@@ -2557,6 +2557,330 @@ footer h4 {
 }
 
     </style>
+
+<style>
+/* =========================================================
+   TAP-TO-REVEAL — ALIGNMENT ONLY
+   Keep the original card/content sizing unchanged.
+   ========================================================= */
+
+.welcome-overlay {
+    width: 100vw;
+    height: 100dvh;
+    min-height: 100dvh;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.floating-card-frame {
+    /* Original sizing preserved */
+    width: clamp(290px, 85vw, 420px);
+    max-width: 420px;
+    min-width: 0;
+    min-height: 0;
+    margin: 0 auto;
+    box-sizing: border-box;
+    flex-shrink: 0;
+
+    /* Original alignment */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.floating-card-frame > * {
+    max-width: 100%;
+    flex-shrink: 0;
+    text-align: center;
+}
+
+/* Keep the existing typography sizes exactly as defined earlier */
+.bengali-amontron-title,
+.english-invitation-subtitle,
+.tap-reveal-title,
+.overlay-invitation-text {
+    text-align: center;
+}
+
+/* Laptop: center only — no resizing */
+@media (min-width: 901px) {
+    .welcome-overlay {
+        padding: 0;
+    }
+
+    .floating-card-frame {
+        width: clamp(290px, 85vw, 420px);
+        max-width: 420px;
+    }
+}
+
+/* Tablet: center only */
+@media (min-width: 601px) and (max-width: 900px) {
+    .welcome-overlay {
+        padding: 0;
+    }
+
+    .floating-card-frame {
+        width: clamp(290px, 85vw, 420px);
+        max-width: 420px;
+    }
+}
+
+/* Mobile: preserve the original responsive width rule */
+@media (max-width: 600px) {
+    .welcome-overlay {
+        padding: 0;
+    }
+
+    .floating-card-frame {
+        width: clamp(290px, 85vw, 420px);
+        max-width: 420px;
+    }
+}
+
+/* Small phones: preserve the original 380px rule */
+@media (max-width: 380px) {
+    .floating-card-frame {
+        width: calc(100vw - 24px);
+        max-width: 420px;
+    }
+}
+</style>
+
+
+<style>
+/* FINAL TAP-TO-REVEAL BOX ALIGNMENT
+   Keep the existing size; correct horizontal/vertical centering only. */
+
+.welcome-overlay {
+    position: fixed;
+    inset: 0;
+    width: auto;
+    height: auto;
+    min-height: 100dvh;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Do not change the card's existing dimensions */
+.floating-card-frame {
+    width: clamp(290px, 85vw, 420px);
+    max-width: 420px;
+    margin: 0;
+    flex: 0 0 auto;
+    transform-origin: center center;
+}
+
+/* Mobile: center against the actual visible viewport, including scrollbar */
+@media (max-width: 600px) {
+    .welcome-overlay {
+        left: 0;
+        right: 0;
+        width: auto;
+    }
+
+    .floating-card-frame {
+        width: clamp(290px, 85vw, 420px);
+        max-width: 420px;
+        margin-left: 0;
+        margin-right: 0;
+    }
+}
+
+/* Very small phones: preserve the existing width rule */
+@media (max-width: 380px) {
+    .floating-card-frame {
+        width: calc(100vw - 24px);
+        max-width: 420px;
+    }
+}
+</style>
+
+
+<style>
+/* =========================================================
+   FULL-PAGE BACKGROUND — SOFT PINK WOVEN / GRID TEXTURE
+   Inspired by the supplied background reference.
+   ========================================================= */
+
+html, body {
+    background-color: #F3E3E2 !important;
+}
+
+/* Main background: fine diagonal lattice + scattered dots */
+body {
+    background-color: #F3E3E2 !important;
+    background-image:
+        /* warm gold dots */
+        radial-gradient(circle at 7% 12%, rgba(197,155,39,.48) 0 2px, transparent 2.8px),
+        radial-gradient(circle at 24% 31%, rgba(197,155,39,.38) 0 1.8px, transparent 2.6px),
+        radial-gradient(circle at 52% 16%, rgba(197,155,39,.32) 0 2px, transparent 2.8px),
+        radial-gradient(circle at 77% 43%, rgba(197,155,39,.35) 0 1.8px, transparent 2.6px),
+        radial-gradient(circle at 91% 73%, rgba(197,155,39,.40) 0 2px, transparent 2.8px),
+
+        /* soft burgundy/pink dots */
+        radial-gradient(circle at 16% 57%, rgba(122,58,90,.24) 0 1.8px, transparent 2.7px),
+        radial-gradient(circle at 39% 73%, rgba(122,58,90,.20) 0 1.6px, transparent 2.5px),
+        radial-gradient(circle at 67% 62%, rgba(122,58,90,.20) 0 1.7px, transparent 2.5px),
+        radial-gradient(circle at 84% 22%, rgba(122,58,90,.18) 0 1.6px, transparent 2.5px),
+
+        /* tiny pearl dots */
+        radial-gradient(circle at 31% 82%, rgba(255,255,255,.82) 0 1.8px, transparent 2.6px),
+        radial-gradient(circle at 61% 38%, rgba(255,255,255,.72) 0 1.7px, transparent 2.5px),
+        radial-gradient(circle at 94% 55%, rgba(255,255,255,.75) 0 1.6px, transparent 2.5px),
+
+        /* fine diagonal woven lattice */
+        repeating-linear-gradient(
+            45deg,
+            transparent 0,
+            transparent 11px,
+            rgba(126,54,82,.105) 11px,
+            rgba(126,54,82,.105) 12px
+        ),
+        repeating-linear-gradient(
+            -45deg,
+            transparent 0,
+            transparent 11px,
+            rgba(126,54,82,.075) 11px,
+            rgba(126,54,82,.075) 12px
+        ),
+        /* subtle paper warmth */
+        linear-gradient(
+            135deg,
+            rgba(255,255,255,.30),
+            transparent 32%,
+            rgba(197,155,39,.035) 52%,
+            transparent 72%,
+            rgba(122,58,90,.035)
+        ) !important;
+
+    background-size:
+        83px 97px,
+        127px 113px,
+        151px 139px,
+        109px 127px,
+        173px 151px,
+        137px 121px,
+        181px 157px,
+        119px 143px,
+        157px 131px,
+        97px 109px,
+        139px 127px,
+        113px 101px,
+        22px 22px,
+        22px 22px,
+        100% 100% !important;
+
+    background-position:
+        0 0,
+        31px 18px,
+        67px 4px,
+        11px 59px,
+        73px 37px,
+        42px 12px,
+        7px 71px,
+        63px 21px,
+        24px 83px,
+        18px 43px,
+        71px 9px,
+        39px 67px,
+        0 0,
+        11px 11px,
+        0 0 !important;
+
+    background-attachment: fixed;
+}
+
+/* Replace the previous blue/gold texture overlay with a very subtle
+   pink paper grain while preserving the existing decorative elements. */
+body::before {
+    opacity: .52 !important;
+    background-image:
+        repeating-linear-gradient(
+            0deg,
+            rgba(122,58,90,.035) 0,
+            rgba(122,58,90,.035) 1px,
+            transparent 1px,
+            transparent 5px
+        ),
+        repeating-linear-gradient(
+            90deg,
+            rgba(197,155,39,.028) 0,
+            rgba(197,155,39,.028) 1px,
+            transparent 1px,
+            transparent 7px
+        ),
+        radial-gradient(
+            circle at 18% 27%,
+            rgba(255,255,255,.45) 0 1.5px,
+            transparent 2.5px
+        ),
+        radial-gradient(
+            circle at 74% 71%,
+            rgba(122,58,90,.10) 0 1.3px,
+            transparent 2.2px
+        ) !important;
+    background-size: 5px 5px, 7px 7px, 43px 47px, 61px 53px !important;
+    mix-blend-mode: multiply;
+}
+
+/* Keep the page itself light and semi-transparent so the new texture
+   remains visible around the invitation content. */
+.page-border {
+    background-color: rgba(251, 244, 246, .78) !important;
+    background-image:
+        radial-gradient(circle at 10% 15%, rgba(197,155,39,.10) 0 1.5px, transparent 2.5px),
+        radial-gradient(circle at 88% 82%, rgba(122,58,90,.055) 0 1.3px, transparent 2.3px),
+        repeating-linear-gradient(
+            45deg,
+            transparent 0,
+            transparent 13px,
+            rgba(122,58,90,.035) 13px,
+            rgba(122,58,90,.035) 14px
+        ),
+        repeating-linear-gradient(
+            -45deg,
+            transparent 0,
+            transparent 13px,
+            rgba(197,155,39,.025) 13px,
+            rgba(197,155,39,.025) 14px
+        ) !important;
+    background-size: 42px 42px, 57px 57px, 26px 26px, 26px 26px !important;
+}
+
+/* Keep the Tap-to-Reveal screen's card appearance unchanged;
+   only the area behind it receives the new texture. */
+.welcome-overlay {
+    background-color: rgba(243, 227, 226, .97) !important;
+    background-image:
+        repeating-linear-gradient(
+            45deg,
+            transparent 0,
+            transparent 12px,
+            rgba(122,58,90,.055) 12px,
+            rgba(122,58,90,.055) 13px
+        ),
+        repeating-linear-gradient(
+            -45deg,
+            transparent 0,
+            transparent 12px,
+            rgba(197,155,39,.035) 12px,
+            rgba(197,155,39,.035) 13px
+        ),
+        radial-gradient(circle at 18% 20%, rgba(197,155,39,.22) 0 1.8px, transparent 2.7px),
+        radial-gradient(circle at 82% 68%, rgba(122,58,90,.14) 0 1.6px, transparent 2.6px),
+        linear-gradient(135deg, #F7EBEC, #F0DEDF) !important;
+    background-size: 24px 24px, 24px 24px, 79px 83px, 113px 101px, 100% 100% !important;
+}
+</style>
+
 </head>
 <body>
 
@@ -2583,7 +2907,7 @@ footer h4 {
                 <div style="font-family: 'Tiro Bangla', serif; font-size: 1.8rem; font-weight: bold; margin-bottom: 2px;">
                     দ্বীপ ও রূপশ্রী
                 </div>
-                <div style="font-family: 'Great Vibes', cursive; font-size: 2rem; color: #2C3E60;">
+                <div style="font-family: 'Great Vibes', cursive; font-size: 2rem; color: #7A3A5A;">
                     (Dwip & Rupashree)
                 </div>
             </div>
