@@ -165,7 +165,7 @@
             justify-content: center;
             cursor: pointer;
             overflow: hidden;
-            transition: opacity 0.8s ease, visibility 0.8s ease;
+            transition: opacity 0.32s ease, visibility 0.32s ease;
         }
 
         .welcome-overlay.hidden {
@@ -189,11 +189,11 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+            transition: transform 0.32s cubic-bezier(0.22, 0.61, 0.36, 1), opacity 0.32s ease;
         }
 
         .welcome-overlay.open .floating-card-frame {
-            transform: translateY(-80px) scale(0.9);
+            transform: translateY(-40px) scale(0.97);
             opacity: 0;
         }
 
@@ -2879,6 +2879,56 @@ body::before {
         linear-gradient(135deg, #F7EBEC, #F0DEDF) !important;
     background-size: 24px 24px, 24px 24px, 79px 83px, 113px 101px, 100% 100% !important;
 }
+
+/* =========================================================
+   PERFORMANCE FIX — SMOOTHER REVEAL + SCROLL
+   Visual/design values intentionally unchanged.
+   ========================================================= */
+
+/* Keep animated layers on their own compositor layers. */
+.welcome-overlay,
+.floating-card-frame {
+    will-change: transform, opacity;
+}
+
+.wax-seal,
+.mandala-bg,
+.petal,
+.gold-particle,
+.click-sparkle {
+    will-change: auto;
+}
+
+/* Avoid repainting the full page texture while scrolling. */
+body {
+    background-attachment: scroll !important;
+}
+
+/* The fixed texture layer is expensive with blend-mode during scroll. */
+body::before {
+    mix-blend-mode: normal !important;
+    will-change: auto;
+}
+
+/* Reveal animations only need compositor-friendly properties. */
+.reveal {
+    will-change: transform, opacity;
+}
+
+/* Respect reduced-motion preferences without changing the normal design. */
+@media (prefers-reduced-motion: reduce) {
+    .reveal,
+    .floating-card-frame,
+    .wax-seal,
+    .mandala-bg,
+    .petal,
+    .gold-particle,
+    .click-sparkle {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
 </style>
 
 </head>
@@ -3062,48 +3112,70 @@ body::before {
             if (audio) {
                 audio.load();
             }
-        });
+            checkScrollReveal();
+        }, { once: true });
 
-        // Instant Trigger Function on Tap
+        // Audio playback stays tied to the user's tap.
         function triggerAudioPlayback() {
             if (audio) {
-                audio.currentTime = 0; // Reset to start instantly
+                // Do not seek/reset on tap; seeking can cause a small main-thread
+                // stall exactly when the entrance animation starts.
                 const playPromise = audio.play();
                 if (playPromise !== undefined) {
-                    playPromise.catch(err => console.log("Audio play allowed on user tap:", err));
+                    playPromise.catch(() => {});
                 }
             }
         }
 
+        let invitationOpened = false;
+
         function openInvitation() {
-            triggerAudioPlayback(); // Play immediately on tap
-            
+            if (invitationOpened) return;
+            invitationOpened = true;
+
+            triggerAudioPlayback();
             overlay.classList.add('open');
+
+            // Hide after the existing visual transition.
             setTimeout(() => {
                 overlay.classList.add('hidden');
-                checkScrollReveal();
-            }, 600);
+                requestAnimationFrame(checkScrollReveal);
+            }, 320);
         }
 
-        // Attach listeners for immediate touch response
-        overlay.addEventListener('touchstart', triggerAudioPlayback, { passive: true, once: true });
-        overlay.addEventListener('click', openInvitation);
+        // Avoid duplicate touch/click handling on mobile.
+        overlay.addEventListener('pointerup', openInvitation, { passive: true });
 
-        // Scroll Reveal Observer
+        // Efficient scroll reveal: IntersectionObserver does not run
+        // getBoundingClientRect() for every .reveal on every scroll event.
+        const reveals = document.querySelectorAll('.reveal');
+
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            root: null,
+            rootMargin: '0px 0px -80px 0px',
+            threshold: 0
+        });
+
+        reveals.forEach(el => revealObserver.observe(el));
+
         function checkScrollReveal() {
-            const reveals = document.querySelectorAll('.reveal');
             reveals.forEach(el => {
-                const windowHeight = window.innerHeight;
-                const elementTop = el.getBoundingClientRect().top;
-                const elementVisible = 80;
+                if (el.classList.contains('active')) return;
 
-                if (elementTop < windowHeight - elementVisible) {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 80) {
                     el.classList.add('active');
+                    revealObserver.unobserve(el);
                 }
             });
         }
-
-        window.addEventListener('scroll', checkScrollReveal);
 
         // Sparkle FX on Click
         document.addEventListener('click', function(e) {
@@ -3114,9 +3186,11 @@ body::before {
             document.body.appendChild(sparkle);
 
             setTimeout(() => sparkle.remove(), 800);
-        });
+        }, { passive: true });
 
         // Subtle floating golden particles
+        const fragment = document.createDocumentFragment();
+
         for (let i = 0; i < 12; i++) {
             const particle = document.createElement('div');
             particle.className = 'gold-particle';
@@ -3124,22 +3198,30 @@ body::before {
             particle.style.top = `${Math.random() * 100}%`;
             particle.style.animationDelay = `${Math.random() * 7}s`;
             particle.style.animationDuration = `${Math.random() * 4 + 6}s`;
-            document.body.appendChild(particle);
+            fragment.appendChild(particle);
         }
+
+        document.body.appendChild(fragment);
 
         // Falling Flower Petals
         const petalsContainer = document.getElementById('petals');
+        const petalFragment = document.createDocumentFragment();
+
         for (let i = 0; i < 20; i++) {
             const petal = document.createElement('div');
             petal.classList.add('petal');
+
             const size = Math.random() * 12 + 8;
             petal.style.width = `${size}px`;
             petal.style.height = `${size * 1.4}px`;
             petal.style.left = `${Math.random() * 100}%`;
             petal.style.animationDelay = `${Math.random() * 8}s`;
             petal.style.animationDuration = `${Math.random() * 5 + 7}s`;
-            petalsContainer.appendChild(petal);
+
+            petalFragment.appendChild(petal);
         }
+
+        petalsContainer.appendChild(petalFragment);
     </script>
 </body>
 </html>
