@@ -178,6 +178,44 @@
             pointer-events: none;
         }
 
+        /* Premium main-page entrance: subtle, not flashy. */
+        body .page-border {
+            opacity: 0;
+            transform: translate3d(0, 12px, 0);
+            transition:
+                opacity 0.9s cubic-bezier(0.22, 0.61, 0.36, 1),
+                transform 0.9s cubic-bezier(0.22, 0.61, 0.36, 1);
+        }
+
+        body.invitation-revealed .page-border {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+
+        body.invitation-revealed header > .reveal:nth-child(1) {
+            transition-delay: 0.08s;
+        }
+
+        body.invitation-revealed header > .reveal:nth-child(2) {
+            transition-delay: 0.16s;
+        }
+
+        body.invitation-revealed header > .reveal:nth-child(3) {
+            transition-delay: 0.24s;
+        }
+
+        body.invitation-revealed header > .reveal:nth-child(4) {
+            transition-delay: 0.32s;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            body .page-border {
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+        }
+
         /* Floating Minimalist Card Wrapper */
         .floating-card-frame {
             position: relative;
@@ -3138,9 +3176,27 @@ body::before {
                 }
 
                 setTimeout(() => {
-                    if (audio && invitationOpened) {
-                        audio.volume = 1;
-                    }
+                    if (!audio || !invitationOpened) return;
+
+                    const fadeDuration = 1000;
+                    const fadeStart = performance.now();
+
+                    const fadeIn = (now) => {
+                        if (!audio || !invitationOpened) return;
+
+                        const progress = Math.min(
+                            (now - fadeStart) / fadeDuration,
+                            1
+                        );
+                        const eased = 1 - Math.pow(1 - progress, 3);
+                        audio.volume = eased;
+
+                        if (progress < 1) {
+                            requestAnimationFrame(fadeIn);
+                        }
+                    };
+
+                    requestAnimationFrame(fadeIn);
                 }, 720);
             }
         }
@@ -3164,7 +3220,11 @@ body::before {
             setTimeout(() => {
                 overlay.classList.add('hidden');
                 document.body.classList.remove('entrance-opening');
-                requestAnimationFrame(checkScrollReveal);
+
+                requestAnimationFrame(() => {
+                    document.body.classList.add('invitation-revealed');
+                    checkScrollReveal();
+                });
             }, 720);
         }
 
