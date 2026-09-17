@@ -2490,6 +2490,72 @@ footer h4 {
     }
 }
 
+    
+/* =========================================================
+   VISIBLE PETALS + CONTENT PROTECTION
+   ========================================================= */
+
+/* Petals stay in front of the page background, but content layers
+   remain above them so text is never obscured. */
+.petals-container {
+    z-index: 4 !important;
+    pointer-events: none !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+.petal {
+    z-index: 4 !important;
+    opacity: .62 !important;
+    filter: drop-shadow(0 1px 2px rgba(11,27,61,.16));
+}
+
+/* Main readable content stays above the petals */
+.page-border > .container {
+    position: relative;
+    z-index: 20 !important;
+}
+
+/* Footer remains above petals */
+.page-border > .wedding-footer {
+    position: relative;
+    z-index: 30 !important;
+}
+
+/* Make the footer text a clean protected layer */
+.wedding-footer .footer-bengali,
+.wedding-footer .footer-english,
+.wedding-footer .wedding-footer-ornament {
+    position: relative;
+    z-index: 31 !important;
+}
+
+/* Keep decorative background art behind both petals and content */
+.page-border > .mandala-bg,
+.page-border > .alpona-corner {
+    z-index: 1 !important;
+    pointer-events: none !important;
+}
+
+/* Slightly stronger petal colors so they remain visible over the
+   textured background on both desktop and mobile. */
+.petal:nth-child(2n) {
+    opacity: .55 !important;
+    filter: drop-shadow(0 1px 2px rgba(11,27,61,.12));
+}
+
+/* Ensure the animation remains visible on small screens */
+@media (max-width: 600px) {
+    .petals-container {
+        display: block !important;
+        visibility: visible !important;
+    }
+
+    .petal {
+        opacity: .66 !important;
+    }
+}
+
     </style>
 </head>
 <body>
