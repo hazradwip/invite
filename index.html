@@ -42,14 +42,25 @@
         }
 
         body {
-            font-family: 'Anek Bangla', sans-serif;
-            background-color: var(--light-grey-bg);
+            margin: 0;
+            background-color: #DCE4EC;
+            background-image:
+                radial-gradient(circle at 10px 10px, rgba(197,155,39,.34) 2px, transparent 2.8px),
+                radial-gradient(circle at 30px 30px, rgba(11,27,61,.18) 1.8px, transparent 2.5px),
+                repeating-linear-gradient(0deg, rgba(11,27,61,.075) 0px, rgba(11,27,61,.075) 1px, transparent 1px, transparent 7px),
+                repeating-linear-gradient(90deg, rgba(197,155,39,.085) 0px, rgba(197,155,39,.085) 1px, transparent 1px, transparent 9px),
+                repeating-linear-gradient(45deg, transparent 0px, transparent 12px, rgba(255,255,255,.30) 12px, rgba(255,255,255,.30) 13px),
+                repeating-linear-gradient(-45deg, transparent 0px, transparent 18px, rgba(11,27,61,.055) 18px, rgba(11,27,61,.055) 19px);
+            background-size:
+                40px 40px,
+                60px 60px,
+                14px 14px,
+                18px 18px,
+                24px 24px,
+                36px 36px;
             color: var(--text-dark);
-            text-align: center;
             overflow-x: hidden;
             position: relative;
-            background-image: radial-gradient(rgba(11, 27, 61, 0.08) 1.5px, transparent 1.5px);
-            background-size: 28px 28px;
         }
 
 
@@ -98,44 +109,36 @@
 
         /* Clearly visible handmade paper/fabric grain */
         body::before {
-            content: '';
+            content: "";
             position: fixed;
             inset: 0;
             pointer-events: none;
             z-index: 0;
-            opacity: 0.72;
+            opacity: .72;
             background-image:
-                repeating-linear-gradient(
-                    0deg,
-                    transparent 0,
-                    transparent 3px,
-                    rgba(11,27,61,0.028) 3px,
-                    rgba(11,27,61,0.028) 4px
-                ),
-                repeating-linear-gradient(
-                    90deg,
-                    transparent 0,
-                    transparent 5px,
-                    rgba(197,155,39,0.032) 5px,
-                    rgba(197,155,39,0.032) 6px
-                );
+                radial-gradient(circle, rgba(197,155,39,.42) 0 2px, transparent 2.5px),
+                radial-gradient(circle, rgba(11,27,61,.22) 0 1.5px, transparent 2px),
+                repeating-linear-gradient(135deg, transparent 0 22px, rgba(197,155,39,.10) 22px 24px, transparent 24px 46px),
+                repeating-linear-gradient(45deg, transparent 0 31px, rgba(11,27,61,.075) 31px 33px, transparent 33px 62px);
+            background-size: 52px 52px, 76px 76px, 92px 92px, 124px 124px;
+            mix-blend-mode: multiply;
         }
 
         /* Decorative repeating floral-dot motif across the page */
         body::after {
-            content: '✦   ❋   ✦   ❋   ✦   ❋   ✦   ❋   ✦   ❋   ✦';
+            content: "✦   ❋   ✦   ❋   ✦   ❋   ✦   ❋   ✦";
             position: fixed;
-            left: 50%;
-            top: 8px;
+            top: 12px;
+            left: 0;
             width: 100%;
-            transform: translateX(-50%);
             text-align: center;
-            color: rgba(197,155,39,0.22);
-            font-size: 13px;
-            letter-spacing: 8px;
-            white-space: nowrap;
+            color: rgba(197,155,39,.62);
+            font-size: 22px;
+            letter-spacing: 10px;
+            line-height: 1;
             pointer-events: none;
             z-index: 0;
+            text-shadow: 0 1px 0 rgba(255,255,255,.65), 0 0 8px rgba(197,155,39,.20);
         }
 
         .page-border {
@@ -1212,6 +1215,1281 @@
             }
             .ornamental-divider { margin-top: 16px; }
         }
+    
+        /* Strong, visible handcrafted textile texture for the main page */
+        .page-border {
+            position: relative;
+            isolation: isolate;
+            background-color: rgba(244,247,250,.90);
+            background-image:
+                radial-gradient(circle at 12px 12px, rgba(197,155,39,.20) 1.5px, transparent 2px),
+                radial-gradient(circle at 34px 28px, rgba(11,27,61,.11) 1.2px, transparent 1.8px),
+                repeating-linear-gradient(0deg, rgba(11,27,61,.035) 0 1px, transparent 1px 5px),
+                repeating-linear-gradient(90deg, rgba(197,155,39,.045) 0 1px, transparent 1px 7px);
+            background-size: 48px 48px, 64px 64px, 10px 10px, 14px 14px;
+        }
+
+        .page-border::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: -1;
+            opacity: .85;
+            background:
+                radial-gradient(circle at 8% 18%, rgba(197,155,39,.16) 0 3px, transparent 4px),
+                radial-gradient(circle at 92% 26%, rgba(197,155,39,.14) 0 3px, transparent 4px),
+                radial-gradient(circle at 14% 78%, rgba(11,27,61,.10) 0 2px, transparent 3px),
+                radial-gradient(circle at 86% 82%, rgba(11,27,61,.10) 0 2px, transparent 3px);
+        }
+
+    
+/* ===== FINAL RESPONSIVE ALIGNMENT PASS ===== */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    min-height: 100%;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+body {
+    width: 100%;
+    min-width: 0;
+    overflow-x: hidden;
+}
+
+.page-border {
+    width: min(94vw, 1180px);
+    max-width: 1180px;
+    margin: 24px auto;
+    padding: clamp(22px, 3.2vw, 48px);
+    border-radius: 24px;
+    min-height: calc(100vh - 48px);
+    overflow: hidden;
+}
+
+/* Keep every main content block inside the same centered grid */
+.page-border > * {
+    width: 100%;
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.mantra,
+.bilingual-invitation,
+.event-card-single,
+.venue-section,
+.details-card,
+.aligned-card {
+    width: 100%;
+    max-width: 920px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Prevent long Bengali/English strings from changing card geometry */
+h1, h2, h3, h4, p, span, div, a {
+    overflow-wrap: break-word;
+    word-break: normal;
+}
+
+.mantra,
+.bilingual-invitation,
+.event-card-single,
+.venue-section,
+.details-card {
+    min-width: 0;
+}
+
+/* Typography stays proportional across laptop and phone */
+.mantra h2,
+.bilingual-invitation h2,
+.event-card-single h2,
+.venue-section h2 {
+    line-height: 1.35;
+    text-align: center;
+}
+
+.mantra p,
+.bilingual-invitation p,
+.event-card-single p,
+.venue-section p {
+    line-height: 1.75;
+}
+
+/* Details/cards: equal-width, clean alignment */
+.details-grid {
+    width: 100%;
+    max-width: 920px;
+    margin-left: auto;
+    margin-right: auto;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(14px, 2vw, 22px);
+    align-items: stretch;
+}
+
+.details-grid > * {
+    min-width: 0;
+    width: 100%;
+}
+
+/* Event content remains centered */
+.event-card-single {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* Venue/map area stays contained */
+.venue-section {
+    overflow: hidden;
+}
+
+.venue-section iframe,
+.venue-section img,
+.venue-section svg {
+    max-width: 100%;
+}
+
+/* Main invitation title/couple block */
+.couple-section,
+.couple-container,
+.couple-names,
+.invitation-content {
+    max-width: 100%;
+}
+
+/* Tap-to-reveal card remains centered at every viewport */
+.welcome-overlay {
+    width: 100%;
+    min-height: 100dvh;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.floating-card-frame {
+    width: min(92vw, 560px);
+    max-width: 560px;
+    min-width: 0;
+    margin: auto;
+}
+
+.floating-card-frame > * {
+    max-width: 100%;
+}
+
+/* Laptop / desktop */
+@media (min-width: 901px) {
+    .page-border {
+        padding-left: 48px;
+        padding-right: 48px;
+    }
+
+    .details-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+    .page-border {
+        width: min(94vw, 900px);
+        margin: 16px auto;
+        padding: 28px clamp(18px, 4vw, 34px);
+        border-radius: 20px;
+        min-height: calc(100vh - 32px);
+    }
+
+    .details-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .floating-card-frame {
+        width: min(90vw, 520px);
+    }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .page-border {
+        width: calc(100vw - 20px);
+        margin: 10px auto;
+        padding: 24px 14px;
+        border-radius: 18px;
+        min-height: calc(100vh - 20px);
+    }
+
+    .page-border > *,
+    .mantra,
+    .bilingual-invitation,
+    .event-card-single,
+    .venue-section,
+    .details-card,
+    .aligned-card,
+    .details-grid {
+        max-width: 100%;
+    }
+
+    .details-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .mantra,
+    .bilingual-invitation,
+    .event-card-single,
+    .venue-section,
+    .details-card {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+    .floating-card-frame {
+        width: calc(100vw - 36px);
+        max-width: 500px;
+    }
+
+    .welcome-overlay {
+        padding: 18px;
+    }
+
+    .mantra h2,
+    .bilingual-invitation h2,
+    .event-card-single h2,
+    .venue-section h2 {
+        font-size: clamp(1.15rem, 5vw, 1.5rem);
+    }
+
+    .mantra p,
+    .bilingual-invitation p,
+    .event-card-single p,
+    .venue-section p {
+        font-size: clamp(.88rem, 3.7vw, 1rem);
+        line-height: 1.7;
+    }
+}
+
+/* Small phones */
+@media (max-width: 380px) {
+    .page-border {
+        width: calc(100vw - 12px);
+        margin: 6px auto;
+        padding: 20px 10px;
+        border-radius: 15px;
+    }
+
+    .floating-card-frame {
+        width: calc(100vw - 24px);
+    }
+
+    .mantra,
+    .bilingual-invitation,
+    .event-card-single,
+    .venue-section,
+    .details-card {
+        padding-left: 11px;
+        padding-right: 11px;
+    }
+}
+
+    
+/* =========================================================
+   PRECISION ALIGNMENT — card typography, icons & content
+   ========================================================= */
+
+/* Consistent global box model */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* Normalize icon geometry */
+.fa, .fas, .far, .fab, i[class*="fa-"],
+.icon, .event-icon, .detail-icon, .venue-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 auto;
+    width: 1.35em;
+    min-width: 1.35em;
+    height: 1.35em;
+    line-height: 1;
+    vertical-align: middle;
+    text-align: center;
+}
+
+/* Every card uses the same internal alignment grid */
+.mantra,
+.bilingual-invitation,
+.event-card-single,
+.venue-section,
+.details-card,
+.aligned-card {
+    position: relative;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+/* Normalize headings */
+.mantra h1,
+.mantra h2,
+.mantra h3,
+.bilingual-invitation h1,
+.bilingual-invitation h2,
+.bilingual-invitation h3,
+.event-card-single h1,
+.event-card-single h2,
+.event-card-single h3,
+.venue-section h1,
+.venue-section h2,
+.venue-section h3,
+.details-card h1,
+.details-card h2,
+.details-card h3 {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    line-height: 1.35;
+}
+
+/* Text blocks should never be shifted by inline icon baseline */
+.mantra p,
+.bilingual-invitation p,
+.event-card-single p,
+.venue-section p,
+.details-card p,
+.aligned-card p {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Common icon + label patterns: icon is fixed, text gets remaining space */
+.event-card-single .event-row,
+.event-card-single .event-item,
+.details-card .detail-row,
+.details-card .detail-item,
+.aligned-card .detail-row,
+.aligned-card .detail-item,
+.venue-section .venue-row,
+.venue-section .venue-item {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-width: 0;
+}
+
+/* If an icon and text are direct children, keep both optically centered */
+.event-card-single .event-row > i,
+.event-card-single .event-item > i,
+.details-card .detail-row > i,
+.details-card .detail-item > i,
+.aligned-card .detail-row > i,
+.aligned-card .detail-item > i,
+.venue-section .venue-row > i,
+.venue-section .venue-item > i {
+    margin: 0;
+    transform: none;
+}
+
+/* Text beside an icon remains centered rather than baseline-shifted */
+.event-card-single .event-row > span,
+.event-card-single .event-item > span,
+.details-card .detail-row > span,
+.details-card .detail-item > span,
+.aligned-card .detail-row > span,
+.aligned-card .detail-item > span,
+.venue-section .venue-row > span,
+.venue-section .venue-item > span {
+    min-width: 0;
+    text-align: center;
+    line-height: 1.55;
+}
+
+/* Details grid: identical columns and identical card geometry */
+.details-grid {
+    width: 100%;
+    max-width: 920px;
+    margin-left: auto;
+    margin-right: auto;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: stretch;
+    justify-items: stretch;
+    gap: 18px;
+}
+
+.details-grid > * {
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+}
+
+/* Headings / labels in detail cards share a common visual line */
+.details-grid > * h1,
+.details-grid > * h2,
+.details-grid > * h3,
+.details-grid > * h4 {
+    width: 100%;
+    min-height: 1.4em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Prevent different icon glyph widths from moving labels */
+.details-grid > * .fa,
+.details-grid > * .fas,
+.details-grid > * .far,
+.details-grid > * .fab,
+.details-grid > * i[class*="fa-"] {
+    width: 1.5em;
+    min-width: 1.5em;
+}
+
+/* Decorative separators stay centered */
+.ornamental-divider,
+.gold-divider,
+.divider,
+.section-divider {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+/* Couple/title area */
+.couple-section,
+.couple-container,
+.couple-names,
+.invitation-content {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+/* Map/button/link elements */
+.venue-section a,
+.venue-section button,
+.event-card-single a,
+.event-card-single button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+/* Mobile: switch detail cards to one clean column and keep icon rows centered */
+@media (max-width: 600px) {
+    .details-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .mantra,
+    .bilingual-invitation,
+    .event-card-single,
+    .venue-section,
+    .details-card,
+    .aligned-card {
+        text-align: center;
+    }
+
+    .event-card-single .event-row,
+    .event-card-single .event-item,
+    .details-card .detail-row,
+    .details-card .detail-item,
+    .aligned-card .detail-row,
+    .aligned-card .detail-item,
+    .venue-section .venue-row,
+    .venue-section .venue-item {
+        gap: 8px;
+    }
+
+    .fa, .fas, .far, .fab, i[class*="fa-"] {
+        width: 1.3em;
+        min-width: 1.3em;
+    }
+}
+
+/* Small phones: avoid icon/text wrapping into uneven baselines */
+@media (max-width: 380px) {
+    .details-grid {
+        gap: 12px;
+    }
+
+    .event-card-single .event-row,
+    .event-card-single .event-item,
+    .details-card .detail-row,
+    .details-card .detail-item,
+    .aligned-card .detail-row,
+    .aligned-card .detail-item,
+    .venue-section .venue-row,
+    .venue-section .venue-item {
+        gap: 6px;
+    }
+}
+
+    
+/* =========================================================
+   FOOTER — PRECISION ALIGNMENT & RESPONSIVE LAYOUT
+   ========================================================= */
+
+/* Catch the actual footer and common footer ornament containers */
+.page-border footer,
+footer,
+.footer,
+.footer-section,
+.footer-content,
+.footer-ornament {
+    width: 100%;
+    max-width: 920px;
+    margin-left: auto;
+    margin-right: auto;
+    min-width: 0;
+    text-align: center;
+}
+
+/* Footer itself becomes a clean centered vertical stack */
+.page-border footer,
+footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding-left: 0;
+    padding-right: 0;
+    overflow: visible;
+}
+
+/* All footer children occupy the same centered axis */
+.page-border footer > *,
+footer > *,
+.footer-content > * {
+    max-width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+/* Footer decorative line / ornament */
+footer .footer-ornament,
+footer .ornament,
+footer .footer-divider,
+.footer-ornament {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 1;
+    margin-top: 4px;
+    margin-bottom: 8px;
+}
+
+/* Footer text — prevent baseline shifts and uneven wrapping */
+footer p,
+footer span,
+footer div,
+.footer-content p,
+.footer-content span {
+    line-height: 1.6;
+    text-align: center;
+    overflow-wrap: break-word;
+    word-break: normal;
+}
+
+/* Footer icons: fixed box means every icon sits on the same center line */
+footer i,
+footer .fa,
+footer .fas,
+footer .far,
+footer .fab,
+footer i[class*="fa-"] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.35em;
+    min-width: 1.35em;
+    height: 1.35em;
+    line-height: 1;
+    vertical-align: middle;
+    margin: 0;
+}
+
+/* Icon + text rows in footer */
+footer a,
+footer .footer-row,
+footer .contact-row,
+.footer-content a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    max-width: 100%;
+    text-align: center;
+    line-height: 1.5;
+    vertical-align: middle;
+}
+
+/* Footer links never force the page wider than the viewport */
+footer a {
+    overflow-wrap: anywhere;
+}
+
+/* Any final decorative couple/thanks text remains centered */
+footer h1,
+footer h2,
+footer h3,
+footer h4 {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    line-height: 1.35;
+}
+
+/* Desktop */
+@media (min-width: 901px) {
+    .page-border footer,
+    footer {
+        padding-top: 8px;
+        padding-bottom: 8px;
+    }
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+    .page-border footer,
+    footer {
+        max-width: 100%;
+        padding-top: 6px;
+        padding-bottom: 6px;
+        gap: 9px;
+    }
+
+    footer p,
+    footer span,
+    footer div {
+        max-width: 100%;
+    }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .page-border footer,
+    footer {
+        width: 100%;
+        padding-top: 5px;
+        padding-bottom: 6px;
+        gap: 8px;
+    }
+
+    footer p,
+    footer span,
+    footer div,
+    .footer-content p,
+    .footer-content span {
+        font-size: clamp(.78rem, 3.4vw, .95rem);
+        line-height: 1.55;
+    }
+
+    footer a,
+    footer .footer-row,
+    footer .contact-row,
+    .footer-content a {
+        width: 100%;
+        max-width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
+    footer .footer-ornament,
+    footer .ornament,
+    footer .footer-divider,
+    .footer-ornament {
+        width: 100%;
+        font-size: clamp(.85rem, 4vw, 1.05rem);
+    }
+}
+
+/* Small phones */
+@media (max-width: 380px) {
+    .page-border footer,
+    footer {
+        gap: 6px;
+    }
+
+    footer p,
+    footer span,
+    footer div,
+    .footer-content p,
+    .footer-content span {
+        font-size: .78rem;
+        line-height: 1.5;
+    }
+
+    footer a,
+    footer .footer-row,
+    footer .contact-row,
+    .footer-content a {
+        gap: 5px;
+    }
+}
+
+    
+/* =========================================================
+   CLEAN FOOTER REBUILD
+   Prevents inherited ornament/card rules from shifting it.
+   ========================================================= */
+
+.wedding-footer {
+    position: relative;
+    z-index: 10;
+    width: min(100%, 920px);
+    margin: 42px auto 0;
+    padding: 0 10px 28px;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center !important;
+    gap: 0 !important;
+    clear: both;
+    min-width: 0;
+    overflow: visible;
+}
+
+/* Remove any accidental inherited pseudo-elements from the footer itself */
+.wedding-footer::before,
+.wedding-footer::after {
+    content: none !important;
+    display: none !important;
+}
+
+/* Completely independent footer divider */
+.wedding-footer-ornament {
+    width: min(100%, 600px);
+    height: 22px;
+    margin: 0 auto 12px;
+    padding: 0;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    gap: 12px;
+    color: var(--gold-accent);
+    line-height: 1 !important;
+    text-align: center !important;
+}
+
+.wedding-footer-ornament::before,
+.wedding-footer-ornament::after {
+    content: "";
+    display: block;
+    flex: 1 1 auto;
+    height: 1px;
+    min-width: 20px;
+    background: linear-gradient(to right, transparent, var(--gold-accent));
+}
+
+.wedding-footer-ornament::after {
+    background: linear-gradient(to left, transparent, var(--gold-accent));
+}
+
+.wedding-footer-ornament span {
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    min-width: 18px;
+    height: 18px;
+    margin: 0 !important;
+    padding: 0 !important;
+    font-size: 14px !important;
+    line-height: 18px !important;
+    color: var(--gold-accent);
+    text-align: center;
+}
+
+/* Footer text uses fixed independent blocks.
+   This prevents inline styles from causing different baselines. */
+.wedding-footer .footer-bengali {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 !important;
+    padding: 0;
+    font-family: 'Tiro Bangla', serif !important;
+    font-size: clamp(1rem, 2vw, 1.12rem) !important;
+    font-weight: 700 !important;
+    line-height: 1.6 !important;
+    color: var(--navy-blue) !important;
+    text-align: center !important;
+    white-space: normal;
+}
+
+.wedding-footer .footer-english {
+    width: 100%;
+    max-width: 100%;
+    margin: 8px 0 0 !important;
+    padding: 0;
+    font-family: inherit;
+    font-size: clamp(.78rem, 1.5vw, .88rem) !important;
+    font-weight: 400 !important;
+    line-height: 1.55 !important;
+    color: var(--navy-blue) !important;
+    opacity: .85;
+    text-align: center !important;
+    white-space: normal;
+    overflow-wrap: anywhere;
+}
+
+/* Do not allow the decorative bottom-corner SVGs to overlap the footer.
+   They remain available at the top of the page. */
+.page-border > .alpona-corner.bottom-left,
+.page-border > .alpona-corner.bottom-right {
+    z-index: 0;
+}
+
+/* Desktop */
+@media (min-width: 901px) {
+    .wedding-footer {
+        margin-top: 42px;
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-bottom: 30px;
+    }
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+    .wedding-footer {
+        width: 100%;
+        margin-top: 34px;
+        padding-left: 8px;
+        padding-right: 8px;
+        padding-bottom: 26px;
+    }
+
+    .wedding-footer-ornament {
+        width: min(92%, 540px);
+    }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .wedding-footer {
+        width: 100%;
+        margin-top: 30px;
+        padding: 0 4px 22px;
+    }
+
+    .wedding-footer-ornament {
+        width: 100%;
+        max-width: 430px;
+        height: 20px;
+        margin-bottom: 10px;
+        gap: 8px;
+    }
+
+    .wedding-footer-ornament::before,
+    .wedding-footer-ornament::after {
+        min-width: 15px;
+    }
+
+    .wedding-footer-ornament span {
+        width: 16px;
+        min-width: 16px;
+        height: 16px;
+        font-size: 12px !important;
+        line-height: 16px !important;
+    }
+
+    .wedding-footer .footer-bengali {
+        font-size: clamp(.92rem, 4.6vw, 1.05rem) !important;
+        line-height: 1.65 !important;
+    }
+
+    .wedding-footer .footer-english {
+        margin-top: 7px !important;
+        font-size: clamp(.72rem, 3.15vw, .86rem) !important;
+        line-height: 1.6 !important;
+    }
+}
+
+/* Small phones */
+@media (max-width: 380px) {
+    .wedding-footer {
+        margin-top: 26px;
+        padding-bottom: 18px;
+    }
+
+    .wedding-footer-ornament {
+        gap: 6px;
+        margin-bottom: 9px;
+    }
+
+    .wedding-footer .footer-bengali {
+        font-size: .9rem !important;
+    }
+
+    .wedding-footer .footer-english {
+        font-size: .69rem !important;
+    }
+}
+
+    
+/* =========================================================
+   HEADER / COUPLE BLOCK — TRUE COMMON ALIGNMENT
+   ========================================================= */
+
+/* One common horizontal axis for the entire top section */
+.page-border > .container {
+    width: 100%;
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.page-border > .container > header {
+    width: 100%;
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 28px 0 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+}
+
+/* Every top element uses exactly the same center */
+.page-border > .container > header > .auspicious-symbol,
+.page-border > .container > header > .sub-heading,
+.page-border > .container > header > .couple-name-frame,
+.page-border > .container > header > .mantra,
+.page-border > .container > header > .bilingual-invitation {
+    width: 100%;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Bengali heading */
+.page-border > .container > header > .auspicious-symbol {
+    display: block;
+    margin-top: 0;
+    margin-bottom: 2px;
+    padding: 0 8px;
+    text-align: center;
+    line-height: 1.45;
+    white-space: normal;
+}
+
+/* Reception subtitle */
+.page-border > .container > header > .sub-heading {
+    display: block;
+    margin-top: 3px;
+    margin-bottom: 8px;
+    padding: 0 8px;
+    text-align: center;
+    line-height: 1.5;
+    letter-spacing: 1.5px;
+}
+
+/* Couple frame is exactly the same width as the cards */
+.page-border > .container > header > .couple-name-frame {
+    width: 100%;
+    max-width: 600px;
+    margin: 8px auto 18px;
+    padding: 9px 20px 13px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Do not let the side ornaments alter the frame's measured width */
+.page-border > .container > header > .couple-name-frame::before,
+.page-border > .container > header > .couple-name-frame::after {
+    top: 50%;
+    width: auto;
+    height: auto;
+    margin: 0;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+/* Ornament has its own centered row */
+.page-border > .container > header > .couple-name-frame .frame-ornament {
+    width: 100%;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0 1px;
+    padding: 0;
+    line-height: 20px;
+    text-align: center;
+}
+
+/* Couple names: no padding that changes optical alignment */
+.page-border > .container > header > .couple-name-frame h1.couple-names {
+    width: 100%;
+    margin: 0 0 3px;
+    padding: 0;
+    text-align: center;
+    line-height: 1.18;
+}
+
+/* Bengali line under names */
+.page-border > .container > header > .couple-name-frame .frame-subtitle {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    line-height: 1.5;
+}
+
+/* Cards immediately below use the same width and center axis */
+.page-border > .container > header > .mantra {
+    width: 100%;
+    max-width: 600px;
+    margin: 16px auto;
+    text-align: center;
+}
+
+.page-border > .container > header > .bilingual-invitation {
+    width: 100%;
+    max-width: 600px;
+    margin: 16px auto;
+    text-align: center;
+}
+
+/* Do not allow the animated mandala/decorative layers to affect layout */
+.page-border > .mandala-bg,
+.page-border > .alpona-corner {
+    z-index: 0 !important;
+    pointer-events: none;
+}
+
+.page-border > .container {
+    position: relative;
+    z-index: 3;
+}
+
+/* Keep the falling petals visually behind the actual content */
+.petals-container {
+    z-index: 4;
+}
+
+.page-border > .container,
+.page-border > .container * {
+    min-width: 0;
+}
+
+/* Desktop */
+@media (min-width: 901px) {
+    .page-border > .container,
+    .page-border > .container > header {
+        max-width: 640px;
+    }
+
+    .page-border > .container > header > .couple-name-frame,
+    .page-border > .container > header > .mantra,
+    .page-border > .container > header > .bilingual-invitation {
+        max-width: 600px;
+    }
+}
+
+/* Tablet */
+@media (max-width: 900px) {
+    .page-border > .container,
+    .page-border > .container > header {
+        max-width: 100%;
+    }
+
+    .page-border > .container > header {
+        padding-top: 24px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    .page-border > .container > header {
+        padding: 20px 0 6px;
+    }
+
+    .page-border > .container > header > .auspicious-symbol {
+        padding: 0 4px;
+        font-size: clamp(1.15rem, 5.4vw, 1.35rem);
+        line-height: 1.5;
+    }
+
+    .page-border > .container > header > .sub-heading {
+        padding: 0 4px;
+        margin-top: 2px;
+        margin-bottom: 7px;
+        font-size: clamp(1rem, 5vw, 1.25rem);
+        line-height: 1.55;
+        letter-spacing: 1px;
+    }
+
+    .page-border > .container > header > .couple-name-frame {
+        width: 100%;
+        margin: 7px auto 15px;
+        padding: 8px 16px 11px;
+    }
+
+    .page-border > .container > header > .couple-name-frame .frame-ornament {
+        height: 18px;
+        line-height: 18px;
+        font-size: .78rem;
+        letter-spacing: 6px;
+    }
+
+    .page-border > .container > header > .couple-name-frame h1.couple-names {
+        font-size: clamp(2.15rem, 10vw, 3.2rem);
+        line-height: 1.12;
+    }
+
+    .page-border > .container > header > .couple-name-frame .frame-subtitle {
+        font-size: clamp(.76rem, 3.8vw, .9rem);
+        line-height: 1.55;
+        letter-spacing: 1px;
+    }
+
+    .page-border > .container > header > .mantra,
+    .page-border > .container > header > .bilingual-invitation {
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+/* Very small phones */
+@media (max-width: 380px) {
+    .page-border > .container > header {
+        padding-top: 17px;
+    }
+
+    .page-border > .container > header > .couple-name-frame {
+        padding-left: 13px;
+        padding-right: 13px;
+    }
+
+    .page-border > .container > header > .couple-name-frame h1.couple-names {
+        font-size: clamp(1.95rem, 10.2vw, 2.6rem);
+    }
+
+    .page-border > .container > header > .couple-name-frame .frame-subtitle {
+        font-size: .72rem;
+    }
+}
+
+    
+/* =========================================================
+   FINAL OVERLAP FIX — FOOTER / FALLING PETALS
+   ========================================================= */
+
+/* Decorative petals must NEVER sit over readable content. */
+.petals-container {
+    z-index: 2 !important;
+    pointer-events: none !important;
+}
+
+/* Keep the actual page content above the decorative animation. */
+.page-border {
+    z-index: 3 !important;
+}
+
+.page-border > .container {
+    position: relative;
+    z-index: 20 !important;
+}
+
+/* Footer gets its own highest content layer. */
+.page-border > .wedding-footer {
+    position: relative;
+    z-index: 30 !important;
+    isolation: isolate;
+    background: transparent;
+}
+
+/* Prevent a petal/animation from visually crossing the footer text area. */
+.wedding-footer .footer-bengali,
+.wedding-footer .footer-english,
+.wedding-footer .wedding-footer-ornament {
+    position: relative;
+    z-index: 31 !important;
+}
+
+/* Give the footer enough vertical breathing room so the last line
+   never touches the page edge or decorative corner artwork. */
+.wedding-footer {
+    min-height: 118px;
+    padding-top: 8px !important;
+    padding-bottom: 30px !important;
+}
+
+/* Keep the footer's final text as a single centered layout unit. */
+.wedding-footer .footer-bengali,
+.wedding-footer .footer-english {
+    transform: none !important;
+    position: relative;
+    left: auto !important;
+    right: auto !important;
+}
+
+/* On phones, use a little more bottom space because the English line
+   wraps onto multiple lines. */
+@media (max-width: 600px) {
+    .wedding-footer {
+        min-height: 128px;
+        margin-top: 28px !important;
+        padding-top: 6px !important;
+        padding-bottom: 30px !important;
+    }
+
+    .wedding-footer .footer-english {
+        max-width: 100%;
+        padding: 0 4px;
+    }
+}
+
+@media (max-width: 380px) {
+    .wedding-footer {
+        min-height: 136px;
+        padding-bottom: 32px !important;
+    }
+}
+
     </style>
 </head>
 <body>
@@ -1373,10 +2651,14 @@
 
         </div>
 
-        <footer>
-            <div class="footer-ornament" aria-hidden="true"><span>✦ ❋ ✦</span></div>
-            <p style="font-family: 'Tiro Bangla', serif; font-size: 1.1rem; font-weight: bold;">বিনীত - পরিবার ও আত্মীয়স্বজন</p>
-            <p style="font-size: 0.85rem; margin-top: 8px; opacity: 0.85;">#DwipWedsRupashree | With Best Compliments from Family & Friends</p>
+        <footer class="wedding-footer">
+            <div class="wedding-footer-ornament" aria-hidden="true">
+                <span>✦</span>
+                <span>❋</span>
+                <span>✦</span>
+            </div>
+            <p class="footer-bengali">বিনীত - পরিবার ও আত্মীয়স্বজন</p>
+            <p class="footer-english">#DwipWedsRupashree | With Best Compliments from Family & Friends</p>
         </footer>
     </div>
 
