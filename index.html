@@ -1267,7 +1267,7 @@
         .page-border {
             position: relative;
             isolation: isolate;
-            background-color: rgba(244,247,250,.90);
+            background-color: #660033;
             background-image:
                 radial-gradient(circle at 12px 12px, rgba(197,155,39,.20) 1.5px, transparent 2px),
                 radial-gradient(circle at 34px 28px, rgba(102,0,51,.11) 1.2px, transparent 1.8px),
@@ -2878,26 +2878,25 @@ body::before {
     mix-blend-mode: multiply;
 }
 
-/* Keep the page itself light and semi-transparent so the new texture
-   remains visible around the invitation content. */
+/* Burgundy main page background */
 .page-border {
-    background-color: rgba(251, 244, 246, .78) !important;
+    background-color: #660033 !important;
     background-image:
-        radial-gradient(circle at 10% 15%, rgba(197,155,39,.10) 0 1.5px, transparent 2.5px),
-        radial-gradient(circle at 88% 82%, rgba(122,58,90,.055) 0 1.3px, transparent 2.3px),
+        radial-gradient(circle at 10% 15%, rgba(197,155,39,.18) 0 1.5px, transparent 2.5px),
+        radial-gradient(circle at 88% 82%, rgba(255,255,255,.08) 0 1.3px, transparent 2.3px),
         repeating-linear-gradient(
             45deg,
             transparent 0,
             transparent 13px,
-            rgba(122,58,90,.035) 13px,
-            rgba(122,58,90,.035) 14px
+            rgba(197,155,39,.055) 13px,
+            rgba(197,155,39,.055) 14px
         ),
         repeating-linear-gradient(
             -45deg,
             transparent 0,
             transparent 13px,
-            rgba(197,155,39,.025) 13px,
-            rgba(197,155,39,.025) 14px
+            rgba(255,255,255,.035) 13px,
+            rgba(255,255,255,.035) 14px
         ) !important;
     background-size: 42px 42px, 57px 57px, 26px 26px, 26px 26px !important;
 }
@@ -2976,6 +2975,79 @@ body::before {
     }
 }
 
+
+/* =========================================================
+   BURGUNDY THEME — MAIN PAGE TEXT CONTRAST
+   Keep the existing cards and tap-to-reveal screen unchanged.
+   ========================================================= */
+.page-border .auspicious-symbol,
+.page-border .sub-heading,
+.page-border .frame-subtitle,
+.page-border .section-title {
+    color: #FDF1B8 !important;
+}
+
+.page-border .auspicious-symbol {
+    text-shadow: 0 1px 2px rgba(0,0,0,.28) !important;
+}
+
+.page-border h1.couple-names {
+    background: linear-gradient(90deg, #FDF1B8, #C59B27, #FFF4D0, #C59B27, #FDF1B8) !important;
+    background-size: 200% auto !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+}
+
+.page-border .alpona-separator {
+    fill: #FDF1B8 !important;
+}
+
+.page-border > .mandala-bg,
+.page-border > .alpona-corner {
+    color: #FDF1B8 !important;
+    fill: #FDF1B8 !important;
+    opacity: .30 !important;
+}
+
+.wedding-footer .footer-bengali,
+.wedding-footer .footer-english {
+    color: #FDF1B8 !important;
+    text-shadow: 0 1px 2px rgba(0,0,0,.25);
+}
+
+
+
+/* =========================================================
+   FINAL COUPLE NAME / SIDE ORNAMENT ADJUSTMENTS
+   ========================================================= */
+/* Remove the two side star ornaments around the couple names. */
+.page-border > .container > header > .couple-name-frame::before,
+.page-border > .container > header > .couple-name-frame::after {
+    content: none !important;
+    display: none !important;
+}
+
+/* Subtle moving gold shine for the couple names. */
+.page-border h1.couple-names {
+    background: linear-gradient(90deg,
+        #FDF1B8 0%,
+        #C59B27 30%,
+        #FFF9DE 50%,
+        #C59B27 70%,
+        #FDF1B8 100%) !important;
+    background-size: 250% auto !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    animation: coupleNameShine 5s ease-in-out infinite !important;
+    filter: drop-shadow(0 0 3px rgba(253,241,184,.28));
+}
+
+@keyframes coupleNameShine {
+    0%, 100% { background-position: 0% center; }
+    50% { background-position: 100% center; }
+}
 </style>
 
 </head>
