@@ -2922,6 +2922,42 @@ body::before {
 }
 
 /* =========================================================
+   MOBILE RENDERING OPTIMIZATION
+   Keeps the design/layout unchanged while reducing GPU repaint work
+   on phones during native scrolling.
+   ========================================================= */
+@media (max-width: 600px) {
+    /* Avoid expensive filter repainting on small screens. */
+    .page-border h1.couple-names,
+    .petal,
+    .gold-particle {
+        filter: none !important;
+    }
+
+    /* Keep the fixed decorative texture, but avoid blend compositing. */
+    body::before {
+        mix-blend-mode: normal !important;
+        opacity: .55 !important;
+    }
+
+    /* Decorative animation layers are isolated from the main content. */
+    .petals-container {
+        contain: layout paint;
+        isolation: isolate;
+    }
+
+    .mandala-bg {
+        contain: paint;
+    }
+
+    /* Prevent hover transitions from being involved on touch devices. */
+    .event-card-single:hover,
+    .venue-section:hover {
+        transform: none !important;
+    }
+}
+
+/* =========================================================
    PERFORMANCE FIX — SMOOTHER REVEAL + SCROLL
    Visual/design values intentionally unchanged.
    ========================================================= */
@@ -2980,18 +3016,6 @@ body::before {
         animation: none !important;
         transition: none !important;
     }
-}
-
-/* Pause decorative animations only while the user is actively scrolling.
-   This keeps the design unchanged while preventing animation repaints from
-   competing with the browser's scrolling/compositing work. */
-html.is-scrolling .petal,
-html.is-scrolling .gold-particle,
-html.is-scrolling .mandala-bg,
-html.is-scrolling .wax-seal,
-html.is-scrolling .diya::before,
-html.is-scrolling h1.couple-names {
-    animation-play-state: paused !important;
 }
 
 /* Keep scrolling on the browser's native compositor path. */
@@ -3391,24 +3415,6 @@ h1.couple-names {
 
         reveals.forEach(el => revealObserver.observe(el));
 
-        // Keep native scrolling fully responsive. During an active scroll,
-        // temporarily pause decorative animations so they do not compete
-        // with scrolling. Animations automatically resume after scrolling stops.
-        let scrollResumeTimer;
-        let scrollRaf = 0;
-
-        window.addEventListener('scroll', () => {
-            if (!scrollRaf) {
-                scrollRaf = requestAnimationFrame(() => {
-                    scrollRaf = 0;
-                });
-            }
-
-            clearTimeout(scrollResumeTimer);
-            scrollResumeTimer = setTimeout(() => {
-            }, 120);
-        }, { passive: true });
-
         function checkScrollReveal() {
             reveals.forEach(el => {
                 if (el.classList.contains('active')) return;
@@ -3432,10 +3438,14 @@ h1.couple-names {
             setTimeout(() => sparkle.remove(), 800);
         }, { passive: true });
 
-        // Subtle floating golden particles
+        // Subtle floating golden particles.
+        // Fewer decorative elements on small screens keeps mobile scrolling
+        // responsive while preserving the same visual effect.
         const fragment = document.createDocumentFragment();
+        const isSmallScreen = window.matchMedia('(max-width: 600px)').matches;
+        const particleCount = isSmallScreen ? 5 : 12;
 
-        for (let i = 0; i < 12; i++) {
+        for (let i = 0; i < particleCount; i++) {
             const particle = document.createElement('div');
             particle.className = 'gold-particle';
             particle.style.left = `${Math.random() * 100}%`;
@@ -3447,11 +3457,14 @@ h1.couple-names {
 
         document.body.appendChild(fragment);
 
-        // Falling Flower Petals
+        // Falling Flower Petals.
+        // Desktop keeps the original density; mobile uses a lighter density
+        // to reduce simultaneous animation/compositing work.
         const petalsContainer = document.getElementById('petals');
         const petalFragment = document.createDocumentFragment();
+        const petalCount = isSmallScreen ? 8 : 20;
 
-        for (let i = 0; i < 20; i++) {
+        for (let i = 0; i < petalCount; i++) {
             const petal = document.createElement('div');
             petal.classList.add('petal');
 
