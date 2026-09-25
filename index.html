@@ -365,14 +365,19 @@
             pointer-events: none;
             z-index: 10;
             overflow: hidden;
+            contain: strict;
+            transform: translateZ(0);
         }
 
         .petal {
             position: absolute;
+            top: 0;
             background: var(--gold-accent);
             border-radius: 150% 0 150% 0;
             opacity: 0.45;
             animation: animatePetal 10s linear infinite;
+            will-change: transform, opacity;
+            contain: layout paint;
         }
 
         .petal:nth-child(2n) {
@@ -381,8 +386,8 @@
         }
 
         @keyframes animatePetal {
-            0% { top: -10%; transform: translateX(0) rotate(0deg); opacity: 0.45; }
-            100% { top: 110%; transform: translateX(100px) rotate(360deg); opacity: 0.1; }
+            0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 0.45; }
+            100% { transform: translate3d(100px, 110vh, 0) rotate(360deg); opacity: 0.1; }
         }
 
         .click-sparkle {
@@ -2842,12 +2847,14 @@ body {
         11px 11px,
         0 0 !important;
 
-    background-attachment: fixed;
+    background-attachment: scroll;
 }
 
 /* Replace the previous blue/gold texture overlay with a very subtle
    pink paper grain while preserving the existing decorative elements. */
 body::before {
+    position: absolute !important;
+    inset: 0 !important;
     opacity: .52 !important;
     background-image:
         repeating-linear-gradient(
@@ -2987,6 +2994,23 @@ html.is-scrolling h1.couple-names {
     animation-play-state: paused !important;
 }
 
+/* Keep scrolling on the browser's native compositor path. */
+body, .page-border, .container {
+    overscroll-behavior: auto;
+}
+
+body::before, body::after {
+    pointer-events: none !important;
+}
+
+.page-border {
+    background-attachment: scroll !important;
+}
+
+.petals-container, .mandala-bg, .gold-particle {
+    backface-visibility: hidden;
+}
+
 /* Keep the browser's native scrolling path; no custom scroll handler is used. */
 html {
     -webkit-overflow-scrolling: touch;
@@ -3064,6 +3088,34 @@ html {
 @keyframes coupleNameShine {
     0%, 100% { background-position: 0% center; }
     50% { background-position: 100% center; }
+}
+
+/* ---------------- SMOOTH SCROLL PERFORMANCE ---------------- */
+/* Keep every animation running while scrolling; optimize only the animated layers. */
+.petals-container {
+    contain: layout paint;
+    isolation: isolate;
+}
+.petal {
+    will-change: transform, opacity;
+    top: -12vh !important;
+    animation-name: animatePetalSmooth !important;
+}
+@keyframes animatePetalSmooth {
+    0% { transform: translate3d(0, -12vh, 0) rotate(0deg); opacity: .45; }
+    100% { transform: translate3d(100px, 112vh, 0) rotate(360deg); opacity: .1; }
+}
+.mandala-bg {
+    will-change: transform;
+}
+h1.couple-names {
+    will-change: background-position;
+}
+.location-pulse-box::after {
+    will-change: transform, opacity;
+}
+.wax-seal {
+    will-change: transform, filter;
 }
 </style>
 
@@ -3348,14 +3400,12 @@ html {
         window.addEventListener('scroll', () => {
             if (!scrollRaf) {
                 scrollRaf = requestAnimationFrame(() => {
-                    document.documentElement.classList.add('is-scrolling');
                     scrollRaf = 0;
                 });
             }
 
             clearTimeout(scrollResumeTimer);
             scrollResumeTimer = setTimeout(() => {
-                document.documentElement.classList.remove('is-scrolling');
             }, 120);
         }, { passive: true });
 
