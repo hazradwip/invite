@@ -2975,6 +2975,23 @@ body::before {
     }
 }
 
+/* Pause decorative animations only while the user is actively scrolling.
+   This keeps the design unchanged while preventing animation repaints from
+   competing with the browser's scrolling/compositing work. */
+html.is-scrolling .petal,
+html.is-scrolling .gold-particle,
+html.is-scrolling .mandala-bg,
+html.is-scrolling .wax-seal,
+html.is-scrolling .diya::before,
+html.is-scrolling h1.couple-names {
+    animation-play-state: paused !important;
+}
+
+/* Keep the browser's native scrolling path; no custom scroll handler is used. */
+html {
+    -webkit-overflow-scrolling: touch;
+}
+
 
 /* =========================================================
    BURGUNDY THEME — MAIN PAGE TEXT CONTRAST
@@ -3321,6 +3338,26 @@ body::before {
         });
 
         reveals.forEach(el => revealObserver.observe(el));
+
+        // Keep native scrolling fully responsive. During an active scroll,
+        // temporarily pause decorative animations so they do not compete
+        // with scrolling. Animations automatically resume after scrolling stops.
+        let scrollResumeTimer;
+        let scrollRaf = 0;
+
+        window.addEventListener('scroll', () => {
+            if (!scrollRaf) {
+                scrollRaf = requestAnimationFrame(() => {
+                    document.documentElement.classList.add('is-scrolling');
+                    scrollRaf = 0;
+                });
+            }
+
+            clearTimeout(scrollResumeTimer);
+            scrollResumeTimer = setTimeout(() => {
+                document.documentElement.classList.remove('is-scrolling');
+            }, 120);
+        }, { passive: true });
 
         function checkScrollReveal() {
             reveals.forEach(el => {
